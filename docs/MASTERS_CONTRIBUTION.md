@@ -1,7 +1,8 @@
 # Master's contribution: quantum deadlines and explainable risk
 
 Most post-quantum tools (inventory scanners, cloud posture tools) answer **what** uses RSA or ECC.
-Q-MigrateAI adds two things they do not give:
+Research has started to quantify **when** to migrate (see *Related work* below), but at the level of a whole
+organisation or with assumed parameters. Q-MigrateAI adds two things to a measured, per-asset inventory:
 
 1. **When** each asset must be upgraded: a per-asset quantum deadline from Mosca's theorem.
 2. **Why** each asset got its risk score: a plain-language sentence, checked for faithfulness.
@@ -63,6 +64,18 @@ It writes `data/research/evaluation_<date>.md` (tables ready for the thesis) and
 | Are the explanations faithful? | Deletion test on the test split: probability drop when the 3 explained inputs are reset vs 3 random inputs (ratio), and how often the prediction changes |
 | Do the AI and the formula point at the same reasons? | Jaccard overlap of the named factors, split by whether their classes agree |
 
+## Related work and what is different
+
+Cite these two papers; a reviewer who knows the field will expect them.
+
+| Work | What it already does | What Q-MigrateAI adds |
+|---|---|---|
+| A. Gupta, S. Mittal, [Post-quantum readiness and cryptographic transition planning for enterprise cloud](https://link.springer.com/article/10.1186/s42400-026-00579-2), *Cybersecurity* 9, 147 (2026) | Mosca's inequality with a Monte Carlo estimator and expert-elicited Q-day timing, to compare migration start years and durations | Their model treats sensitive data as one stream for the organisation; ours gives a deadline **per asset**, from that asset's own data lifetime and dependants |
+| A. Shaw, [Cost of Delay for Post-Quantum Migration](https://arxiv.org/abs/2610.09029), arXiv:2610.09029 (2026) | A per-asset ordered list that combines classical and harvest-now-decrypt-later risk as a cost of delay | Their case studies use parameters assumed from public documentation and are not validated against outcomes; ours runs on **measured** data (live TLS and certificate measurements, cloud APIs), derives migration time from the **dependency graph** (an asset inherits the deadline of the key that protects it) and explains every result in plain words |
+
+So the honest claim is not "the first deadline", but: *a per-asset quantum deadline computed from a measured
+dependency graph, with faithful explanations, evaluated against the rule baseline.*
+
 ## Limits (state them in the thesis)
 
 * The CRQC year is an expert estimate, which is why three scenarios are reported.
@@ -77,5 +90,9 @@ It writes `data/research/evaluation_<date>.md` (tables ready for the thesis) and
 
 * M. Mosca, "Cybersecurity in an era with quantum computers: will we be ready?", IEEE Security & Privacy 16(5), 2018.
 * M. Mosca, M. Piani, *Quantum Threat Timeline Report 2025*, Global Risk Institute / evolutionQ.
+* A. Gupta, S. Mittal, "Post-quantum readiness and cryptographic transition planning for enterprise cloud",
+  *Cybersecurity* 9, 147, 2026.
+* A. Shaw, "Cost of Delay for Post-Quantum Migration: Putting Classical and Harvest-Now-Decrypt-Later Risk on One
+  Ordered List", arXiv:2610.09029, 2026.
 * NIST IR 8547, *Transition to Post-Quantum Cryptography Standards*.
 * NIST FIPS 203, 204, 205 (ML-KEM, ML-DSA, SLH-DSA), August 2024.

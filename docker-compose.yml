@@ -45,6 +45,12 @@ services:
       COOKIE_SECURE: ${COOKIE_SECURE:-1}
       TRUST_PROXY: "1"
       SERVE_WEB: "0"
+      # Shared server: never use this server's own cloud login for a customer (see connectors/clouds.py).
+      CLOUD_CREDENTIALS: role
+      # Discovery may only connect to public internet addresses, never into this server's network.
+      ALLOW_PRIVATE_TARGETS: "0"
+      DATA_SOURCE: ${DATA_SOURCE:-public}
+      PUBLIC_SITES: ${PUBLIC_SITES:-45}
       PUBLIC_URL: ${PUBLIC_URL:-https://qmigrate.awhlle.com}
       ALLOW_SIGNUP: ${ALLOW_SIGNUP:-1}
       SEED_DEMO: ${SEED_DEMO:-1}

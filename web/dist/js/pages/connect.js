@@ -69,9 +69,10 @@ export async function connectPage(el, params) {
         <article class="panel panel-pad flex flex-col">
           <div class="flex items-center gap-2"><h3>${esc(p.title)}</h3></div>
           <p class="mt-1">${p.status === "available" ? `<span class="chip border-risk-safe/50 text-risk-safe">Available</span>`
-            : `<span class="chip border-risk-medium/50 text-risk-medium" title="The read-only access design is ready; automatic scanning is not built in this version">Access design ready</span>`}</p>
+            : p.status === "laptop_only" ? `<span class="chip border-risk-medium/50 text-risk-medium" title="Uses the cloud login of the PC it runs on, so it is switched off on a shared server">Laptop installation only</span>`
+                : `<span class="chip border-risk-medium/50 text-risk-medium" title="The read-only access design is ready; automatic scanning is not built in this version">Access design ready</span>`}</p>
           <p class="mt-3 text-[13.5px] text-fog flex-1">${esc(p.summary)}</p>
-          ${can("connections") ? `<button class="btn btn-sm mt-4 self-start" data-setup="${key}">Set up</button>` : ""}
+          ${can("connections") && p.status !== "laptop_only" ? `<button class="btn btn-sm mt-4 self-start" data-setup="${key}">Set up</button>` : ""}
         </article>`).join("")}</div>
     </section>`;
         el.querySelectorAll("[data-run]").forEach((b) => b.addEventListener("click", async () => {

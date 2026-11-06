@@ -115,6 +115,36 @@ PROVIDERS = {
 }
 
 
+# CLOUD_CREDENTIALS decides whose cloud login the connectors may use.
+#   local (default, the laptop demo): the cloud CLI login of the person running Q-MigrateAI on this PC.
+#   role  (a shared server with several companies): the server's own login must never be used for a
+#         customer, so AWS works only by assuming the customer's read-only role with the External ID
+#         the platform generated for that company, and Azure / Google Cloud are switched off.
+def credentials_mode() -> str:
+    mode = os.environ.get("CLOUD_CREDENTIALS", "local").strip().lower()
+    return mode if mode in ("local", "role") else "local"
+
+
+SHARED_SERVER_NOTE = ("On this shared server, {name} can only be connected on a laptop installation for now: "
+                      "signing in with this server's own cloud login would let one company read another's cloud.")
+
+if credentials_mode() == "role":
+    aws = PROVIDERS["aws"]
+    aws["summary"] = aws["summary"].replace("Uses the AWS CLI login on this PC.",
+                                            "Q-MigrateAI assumes a read-only role in your account.")
+    aws["access"] = [
+        "In your AWS account: IAM > Roles > Create role > AWS account > Another AWS account: the account ID of this "
+        "Q-MigrateAI server. Tick 'Require external ID' and paste the External ID shown below.",
+        "Attach the AWS managed policies SecurityAudit and AWSCertificateManagerReadOnly (or the narrower read-only "
+        "policy below), name the role (for example QMigrateReadOnly) and copy its ARN here.",
+        "You can remove access at any time by deleting the role.",
+    ]
+    aws["fields"] = [f for f in aws["fields"] if f["key"] != "profile"]
+    for name in ("azure", "gcp"):
+        PROVIDERS[name]["status"] = "laptop_only"
+        PROVIDERS[name]["summary"] += " " + SHARED_SERVER_NOTE.format(name=PROVIDERS[name]["title"])
+
+
 # The synthetic simulator is switched off unless ENABLE_SIMULATOR=1 (used by the offline test suite).
 if os.environ.get("ENABLE_SIMULATOR", "0").strip().lower() not in ("1", "true", "yes", "on"):
     PROVIDERS.pop("simulator")
@@ -127,4 +157,14 @@ def make_connector(provider: str, config: dict, simulator_url: str):
         return PublicWebConnector(config)
     if provider == "simulator":
         return SimulatorConnector(config, simulator_url)
+    if credentials_mode() == "role":
+        if provider in ("azure", "gcp"):
+            from qmigrate.server.connectors.base import ConnectorNotReady
+            raise ConnectorNotReady(SHARED_SERVER_NOTE.format(name=PROVIDERS[provider]["title"]))
+        # Never this server's own profile; only the customer's role, with the External ID stored by the platform.
+        config = {k: v for k, v in config.items() if k != "profile"}
+        if not str(config.get("role_arn") or "").strip() or not config.get("external_id"):
+            from qmigrate.server.connectors.base import ConnectorNotReady
+            raise ConnectorNotReady("On this shared server an AWS connection needs a Role ARN to assume, "
+                                    "with the External ID shown on the connection page.")
     return {"aws": AwsConnector, "azure": AzureConnector, "gcp": GcpConnector}[provider](config)

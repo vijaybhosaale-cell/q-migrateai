@@ -29,7 +29,10 @@ function draw(el: HTMLElement, m: any): void {
         <p class="mt-1 text-[14px] text-fog">Five models learn the same task: predict the risk class an analyst would give each asset.
           They train on ${m.split.train} assets and are scored on ${m.split.test} assets they never saw, then checked again with 5-fold cross-validation.
           The platform uses <span class="text-mist">${esc(primary.name)}</span>; ${best.key === m.primary ? "it also has the best cross-validated score here." : `on this estate <span class="text-mist">${esc(best.name)}</span> scores higher, which is worth reviewing.`}</p>
-        <p class="mt-2 text-[12.5px] text-risk-medium">The labels come from the simulator, which imitates an analyst's past decisions with a hidden rule. These scores show the models can learn that rule; they are not proof of accuracy on a real company.</p>
+        <p class="mt-2 text-[12.5px] text-risk-medium">${m.label_source === "simulator"
+          ? "The labels come from the simulator, which imitates an analyst's past decisions with a hidden rule."
+          : "The labels come from a documented migration-priority rubric applied to the measured data, not from human analysts."}
+          These scores show the models can learn that rule; they are not proof of accuracy against real analysts.</p>
       </div>
       ${can("discover") ? `<div class="ml-auto flex items-end gap-2"><div><label class="label" for="m-seed">Random seed</label>
         <input id="m-seed" type="number" class="input w-24" value="${m.seed}" min="1" max="99999"></div>

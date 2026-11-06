@@ -1,6 +1,9 @@
 // End-to-end browser test of the whole Q-MigrateAI journey, with screenshots.
 //
-// Start the platform on a FRESH database first (demo seeding on), then:
+// The expected numbers (399 assets, 347 quantum-exposed...) come from the synthetic simulator, because live
+// website measurements change every day. Start the platform on a FRESH database in simulator mode:
+//   ENABLE_SIMULATOR=1 DATA_SOURCE=simulator python -m uvicorn qmigrate.server.app:app --port 8002
+// then:
 //   node tests/e2e/run_e2e.js
 // Settings (environment variables): QM_URL (default http://127.0.0.1:8002), QM_SHOTS (screenshot folder),
 // QM_DEMO_PASSWORD (default QuantumDemo!2026). Needs Node.js and Playwright with Chromium.
@@ -72,6 +75,9 @@ async function waitHealthySeed() {
   // Demo seeding runs in the background after start-up (about half a minute).
   for (let i = 0; i < 180; i++) {
     const h = await (await page.request.get(`${BASE}/api/health`)).json();
+    if (h.data_source && h.data_source !== "simulator") {
+      throw new Error(`The server uses ${h.data_source} data. This test checks fixed simulator numbers: restart it with ENABLE_SIMULATOR=1 DATA_SOURCE=simulator on a fresh database.`);
+    }
     if (h.demo_data === "ready") return;
     if (h.demo_data === "failed" || h.demo_data === "off") throw new Error(`Demo data is ${h.demo_data}; start the server with SEED_DEMO=1 on a fresh database.`);
     await page.waitForTimeout(1000);

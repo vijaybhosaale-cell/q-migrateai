@@ -128,7 +128,8 @@ deploy/               Dockerfile, Caddyfile, backup script           docs/      
 pip install -r requirements-dev.txt
 pytest -q tests                                   # API tests on SQLite
 QM_TEST_PG="postgresql://postgres@localhost/postgres" pytest -q tests   # also on PostgreSQL with RLS
-node tests/e2e/run_e2e.js                         # 23-step browser test (needs Node + Playwright; server on a fresh database)
+node tests/e2e/run_e2e.js                         # 23-step browser test (needs Node + Playwright; server on a fresh
+                                                  # database started with ENABLE_SIMULATOR=1 DATA_SOURCE=simulator)
 ```
 
 Last results: **37 passed, 1 skipped** (API, SQLite + PostgreSQL 16) and **23/23** browser steps, both against the laptop

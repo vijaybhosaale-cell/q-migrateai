@@ -20,6 +20,7 @@ from qmigrate.engine import assistant
 from qmigrate.engine.catalog import ALGORITHMS, CLASSICAL_FACTS, PQC_FACTS
 from qmigrate.engine.estate import clean
 from qmigrate.server import project_data, report_pdf
+from qmigrate.server.connectors.base import ConnectorNotReady
 from qmigrate.server.connectors.clouds import PROVIDERS, make_connector
 from qmigrate.server.db import Database, new_id, now_iso
 from qmigrate.server.security import (hash_password, new_token, otpauth_uri, password_problem, temporary_password,
@@ -241,7 +242,7 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
     @app.get("/api/health")
     def health():
         return {"status": "ok", "version": VERSION, "database": db.dialect, "rls_enforced": db.rls_enforced,
-                "demo_data": seed_state["status"]}
+                "demo_data": seed_state["status"], "data_source": s.data_source}
 
     @app.get("/api/public/config")
     def public_config():
@@ -485,6 +486,8 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
     def add_connection(body: ConnectionBody, ctx: dict = Depends(need("connections"))):
         if body.provider not in PROVIDERS:
             raise Invalid("Unknown provider.")
+        if PROVIDERS[body.provider].get("status") == "laptop_only":
+            raise Invalid(PROVIDERS[body.provider]["summary"])
         allowed = {f["key"] for f in PROVIDERS[body.provider]["fields"]}
         config = {k: v for k, v in body.config.items() if k in allowed and isinstance(v, (str, int, float, bool))}
         if body.provider == "aws":
@@ -520,7 +523,10 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
             row = c.one("SELECT * FROM cloud_connections WHERE tenant_id = ? AND id = ?", (ctx["tid"], cid))
         if not row:
             raise NotFound("Connection not found.")
-        return make_connector(row["provider"], json.loads(row["config"] or "{}"), s.simulator_url).test()
+        try:
+            return make_connector(row["provider"], json.loads(row["config"] or "{}"), s.simulator_url).test()
+        except ConnectorNotReady as exc:
+            return {"ok": False, "status": "error", "message": str(exc)}
 
     @app.delete("/api/connections/{cid}")
     def delete_connection(cid: str, ctx: dict = Depends(need("connections"))):
@@ -583,7 +589,9 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
 
     @app.get("/api/models")
     def models(ctx: dict = Depends(need("read"))):
-        return platform.require_estate(ctx["tid"]).models_summary()
+        # Where the training labels came from, so the page can say it honestly.
+        return {**platform.require_estate(ctx["tid"]).models_summary(),
+                "label_source": "simulator" if s.data_source == "simulator" else "rubric"}
 
     @app.post("/api/models/retrain")
     def retrain(body: SeedBody, ctx: dict = Depends(need("discover"))):

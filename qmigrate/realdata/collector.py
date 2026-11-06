@@ -53,6 +53,36 @@ MAX_DOMAINS = 300
 
 GROUPS = {0x11EC: "X25519MLKEM768", 0x001D: "x25519", 0x0017: "secp256r1", 0x0018: "secp384r1",
           0x0019: "secp521r1", 0x0100: "ffdhe2048", 0x0101: "ffdhe3072", 0x6399: "X25519Kyber768Draft00"}
+
+
+# =================================================================== network safety
+class UnsafeTarget(ValueError):
+    """The name resolves to a private, loopback, link-local or otherwise non-public address."""
+
+
+def private_targets_allowed() -> bool:
+    """Lab use only: ALLOW_PRIVATE_TARGETS=1 lets discovery check hosts on a private network.
+    Off by default, so a shared server can never be made to connect into its own network
+    (cloud metadata service, database, other containers) through a domain someone typed."""
+    return os.environ.get("ALLOW_PRIVATE_TARGETS", "0").strip().lower() in ("1", "true", "yes", "on")
+
+
+def public_address(host: str, port: int = 443) -> str:
+    """Resolve `host` once and return an address that is safe to connect to.
+
+    Every address the name resolves to must be global (public internet); otherwise the target is
+    refused. The caller connects to the returned address itself, so a second DNS answer cannot
+    swap in an internal address between the check and the connection."""
+    infos = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+    addrs = list(dict.fromkeys(i[4][0] for i in infos))
+    if not addrs:
+        raise UnsafeTarget(f"{host} does not resolve")
+    if not private_targets_allowed():
+        bad = [a for a in addrs if not ipaddress.ip_address(a.split("%")[0]).is_global]
+        if bad:
+            raise UnsafeTarget(f"{host} resolves to a non-public address ({bad[0]}); skipped")
+    return addrs[0]
+
 KEX_ALGORITHM = {"X25519MLKEM768": "X25519+ML-KEM-768", "X25519Kyber768Draft00": "X25519+ML-KEM-768",
                  "x25519": "X25519", "secp256r1": "ECDHE-P256", "secp384r1": "ECDHE-P256", "secp521r1": "ECDHE-P256",
                  "ffdhe2048": "DH-2048", "ffdhe3072": "DH-2048"}
@@ -125,9 +155,10 @@ def parse_server_hello(data: bytes) -> dict:
     return out
 
 
-def pq_probe(host: str, port: int = 443, timeout: float = 8.0) -> dict:
-    """Does the server accept X25519MLKEM768? If not, which classical group does it ask for?"""
-    with socket.create_connection((host, port), timeout=timeout) as s:
+def pq_probe(host: str, port: int = 443, timeout: float = 8.0, address: str | None = None) -> dict:
+    """Does the server accept X25519MLKEM768? If not, which classical group does it ask for?
+    `address` = the IP to connect to (already checked by public_address); the name still goes in SNI."""
+    with socket.create_connection((address or host, port), timeout=timeout) as s:
         s.sendall(client_hello(host))
         ctype, _, length = struct.unpack("!BHH", _recv(s, 5))
         payload = _recv(s, length)
@@ -171,6 +202,24 @@ def _is_ca(c: x509.Certificate) -> bool:
         return False
 
 
+def aia_url_allowed(url: str) -> bool:
+    """The "CA Issuers" URL comes from a certificate a website sent, so it is untrusted input:
+    only http(s), the standard ports, and a host on the public internet."""
+    from urllib.parse import urlsplit
+    try:
+        u = urlsplit(url)
+        port = u.port or (443 if u.scheme == "https" else 80)
+    except ValueError:
+        return False
+    if u.scheme not in ("http", "https") or not u.hostname or port not in (80, 443):
+        return False
+    try:
+        public_address(u.hostname, port)
+    except (OSError, UnsafeTarget):
+        return False
+    return True
+
+
 def _aia_issuer(c: x509.Certificate, timeout: float) -> x509.Certificate | None:
     try:
         aia = c.extensions.get_extension_for_oid(ExtensionOID.AUTHORITY_INFORMATION_ACCESS).value
@@ -179,9 +228,9 @@ def _aia_issuer(c: x509.Certificate, timeout: float) -> x509.Certificate | None:
     for d in aia:
         if d.access_method == AuthorityInformationAccessOID.CA_ISSUERS:
             url = d.access_location.value
-            if not url.startswith("http"):
+            if not aia_url_allowed(url):
                 continue
-            r = requests.get(url, timeout=timeout, headers=UA)
+            r = requests.get(url, timeout=timeout, headers=UA, allow_redirects=False)
             r.raise_for_status()
             try:
                 return x509.load_der_x509_certificate(r.content)
@@ -193,9 +242,9 @@ def _aia_issuer(c: x509.Certificate, timeout: float) -> x509.Certificate | None:
     return None
 
 
-def tls_handshake(host: str, port: int = 443, timeout: float = 8.0) -> dict:
+def tls_handshake(host: str, port: int = 443, timeout: float = 8.0, address: str | None = None) -> dict:
     ctx = ssl.create_default_context()
-    with socket.create_connection((host, port), timeout=timeout) as sock:
+    with socket.create_connection((address or host, port), timeout=timeout) as sock:
         ip = sock.getpeername()[0]
         with ctx.wrap_socket(sock, server_hostname=host) as s:
             version, cipher = s.version(), (s.cipher() or (None,))[0]
@@ -341,12 +390,22 @@ def _criticality(rank: int | None, default: int) -> int:
 def measure(domain: str, timeout: float) -> dict:
     out = {"domain": domain, "errors": []}
     try:
-        out["pq"] = pq_probe(domain, timeout=timeout)
+        address = public_address(domain)
+    except UnsafeTarget as exc:
+        out.update(pq=None, tls=None)
+        out["errors"].append(f"refused: {exc}")
+        return out
+    except OSError as exc:
+        out.update(pq=None, tls=None)
+        out["errors"].append(f"dns: {exc.__class__.__name__}")
+        return out
+    try:
+        out["pq"] = pq_probe(domain, timeout=timeout, address=address)
     except Exception as exc:  # noqa: BLE001
         out["pq"] = None
         out["errors"].append(f"pq: {exc.__class__.__name__}")
     try:
-        out["tls"] = tls_handshake(domain, timeout=timeout)
+        out["tls"] = tls_handshake(domain, timeout=timeout, address=address)
     except Exception as exc:  # noqa: BLE001
         out["tls"] = None
         out["errors"].append(f"tls: {exc.__class__.__name__}: {exc}"[:160])

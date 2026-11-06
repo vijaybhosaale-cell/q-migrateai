@@ -17,6 +17,11 @@
 		reverse_proxy engine:8002
 	}
 
+	# The Project data page is served by the engine, not from web/dist.
+	handle /project-data* {
+		reverse_proxy engine:8002
+	}
+
 	handle {
 		root * /srv/web
 		try_files {path} /index.html
