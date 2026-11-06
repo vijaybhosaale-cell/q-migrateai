@@ -66,6 +66,7 @@ The 8-minute demo flow is in **[docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)**.
 | 5 | PQC lab | Choose an asset and a target (ML-KEM, ML-DSA, SLH-DSA, hybrid X25519+ML-KEM-768), run validation checks, migrate, roll back |
 | 6 | Measure and report | Before/after figures, NIST readiness %, changed assets, history, **one-click PDF report** |
 | | Project data | Per project (e.g. the domains you typed): every data row collected, used in the analysis or not, migrated or still to migrate; correct entries; download Excel / CSV / JSON. Open http://localhost:8002/project-data/ ([docs/PROJECT_DATA.md](docs/PROJECT_DATA.md)) |
+| | Data paths | A request or record crosses several assets and is only as quantum-safe as its weakest hop. Shows how many data paths are safe end to end next to asset coverage, assets that look safe but carry harvestable data, the hops that block the most paths, and a path-first Wave 1 to compare with the plan ([qmigrate/research/p7_paths](qmigrate/research/p7_paths/README.md)) |
 | | Config check | Paste or upload TLS configuration (nginx, Apache, HAProxy, Envoy, Istio, Envoy Gateway, Traefik, Caddy, Go, Kubernetes, Terraform). Shows, per endpoint, whether hybrid post-quantum key exchange is on, off because a list pins classical groups, off because of the product default, or dependent on the OpenSSL or Go version, and what to change. Backed by the P8 study of 37 public repositories ([qmigrate/research/p8_config_pqc](qmigrate/research/p8_config_pqc/README.md)) |
 | | AI models | Five models compared: macro-F1 with cross-validation, confusion matrix, feature importance, training curve, retrain |
 | | Alerts | New quantum-vulnerable assets found by scheduled re-discovery; copies by e-mail (SMTP) and Slack webhook |
@@ -129,11 +130,11 @@ deploy/               Dockerfile, Caddyfile, backup script           docs/      
 pip install -r requirements-dev.txt
 pytest -q tests                                   # API tests on SQLite
 QM_TEST_PG="postgresql://postgres@localhost/postgres" pytest -q tests   # also on PostgreSQL with RLS
-node tests/e2e/run_e2e.js                         # 24-step browser test (needs Node + Playwright; server on a fresh
+node tests/e2e/run_e2e.js                         # 25-step browser test (needs Node + Playwright; server on a fresh
                                                   # database started with ENABLE_SIMULATOR=1 DATA_SOURCE=simulator)
 ```
 
-Last results (6 November 2026): **128 passed, 3 skipped** (API and research tests, SQLite + PostgreSQL 16 with RLS) and **24/24** browser steps on the laptop setup. The 3 skips need optional packages (moto, pyOpenSSL) or PostgreSQL-only row-level security.
+Last results (6 November 2026): **139 passed, 3 skipped** (API and research tests, SQLite + PostgreSQL 16 with RLS) and **25/25** browser steps on the laptop setup. The 3 skips need optional packages (moto, pyOpenSSL) or PostgreSQL-only row-level security.
 
 ## 6. Changing the web app
 

@@ -1,0 +1,2883 @@
+{
+  "generated": "2026-11-06",
+  "budgets": [
+    10,
+    20,
+    40,
+    60,
+    100
+  ],
+  "demo": [
+    {
+      "profile": "bank",
+      "seed": 42,
+      "assets": 399,
+      "paths": 445,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 28,
+        "asset_coverage_pct": 8.0
+      },
+      "sensitive_paths": 420,
+      "bottlenecks": [
+        {
+          "asset_id": "AWS-IAM-001",
+          "paths": 191,
+          "only_fix_needed": 0,
+          "value": 287.26,
+          "algorithm": "ECDSA-P256",
+          "service_type": "iam_sso"
+        },
+        {
+          "asset_id": "AWS-CA-001",
+          "paths": 184,
+          "only_fix_needed": 0,
+          "value": 283.32,
+          "algorithm": "RSA-2048",
+          "service_type": "certificate_authority"
+        },
+        {
+          "asset_id": "AZURE-CA-002",
+          "paths": 151,
+          "only_fix_needed": 0,
+          "value": 233.62,
+          "algorithm": "RSA-2048",
+          "service_type": "certificate_authority"
+        },
+        {
+          "asset_id": "AWS-KMS-004",
+          "paths": 143,
+          "only_fix_needed": 0,
+          "value": 212.78,
+          "algorithm": "RSA-2048",
+          "service_type": "kms_key"
+        },
+        {
+          "asset_id": "AWS-CA-002",
+          "paths": 133,
+          "only_fix_needed": 0,
+          "value": 204.97,
+          "algorithm": "RSA-4096",
+          "service_type": "certificate_authority"
+        }
+      ],
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 77,
+            "asset_coverage_pct": 22.8
+          },
+          "path_first": {
+            "safe_paths": 13,
+            "safe_value_pct": 3.3,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 96.7,
+            "false_assurance": 48,
+            "asset_coverage_pct": 14.0
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 34.3,
+            "asset_coverage_pct": 9.7
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 92,
+            "asset_coverage_pct": 27.6
+          },
+          "path_first": {
+            "safe_paths": 23,
+            "safe_value_pct": 6.0,
+            "sensitive_safe": 23,
+            "harvestable_value_pct": 93.5,
+            "false_assurance": 62,
+            "asset_coverage_pct": 18.0
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 42.2,
+            "asset_coverage_pct": 11.8
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 99.2,
+            "false_assurance": 119,
+            "asset_coverage_pct": 35.1
+          },
+          "path_first": {
+            "safe_paths": 57,
+            "safe_value_pct": 14.3,
+            "sensitive_safe": 57,
+            "harvestable_value_pct": 85.7,
+            "false_assurance": 58,
+            "asset_coverage_pct": 23.8
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 57,
+            "asset_coverage_pct": 15.7
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 4,
+            "safe_value_pct": 1.0,
+            "sensitive_safe": 4,
+            "harvestable_value_pct": 98.7,
+            "false_assurance": 132,
+            "asset_coverage_pct": 38.6
+          },
+          "path_first": {
+            "safe_paths": 97,
+            "safe_value_pct": 23.3,
+            "sensitive_safe": 91,
+            "harvestable_value_pct": 76.7,
+            "false_assurance": 47,
+            "asset_coverage_pct": 29.6
+          },
+          "path_first_used": 58,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 69.5,
+            "asset_coverage_pct": 19.0
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 6,
+            "safe_value_pct": 1.5,
+            "sensitive_safe": 6,
+            "harvestable_value_pct": 96.9,
+            "false_assurance": 173,
+            "asset_coverage_pct": 50.9
+          },
+          "path_first": {
+            "safe_paths": 161,
+            "safe_value_pct": 38.8,
+            "sensitive_safe": 155,
+            "harvestable_value_pct": 61.2,
+            "false_assurance": 86,
+            "asset_coverage_pct": 46.6
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 0.7,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.7,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 103.8,
+            "asset_coverage_pct": 28.1
+          }
+        }
+      ]
+    },
+    {
+      "profile": "hospital",
+      "seed": 7,
+      "assets": 395,
+      "paths": 478,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 26,
+        "asset_coverage_pct": 7.3
+      },
+      "sensitive_paths": 462,
+      "bottlenecks": [
+        {
+          "asset_id": "AZURE-CA-001",
+          "paths": 222,
+          "only_fix_needed": 0,
+          "value": 358.57,
+          "algorithm": "RSA-4096",
+          "service_type": "certificate_authority"
+        },
+        {
+          "asset_id": "AZURE-IAM-001",
+          "paths": 154,
+          "only_fix_needed": 0,
+          "value": 242.49,
+          "algorithm": "ECDSA-P256",
+          "service_type": "iam_sso"
+        },
+        {
+          "asset_id": "AZURE-KMS-001",
+          "paths": 166,
+          "only_fix_needed": 0,
+          "value": 239.88,
+          "algorithm": "RSA-2048",
+          "service_type": "kms_key"
+        },
+        {
+          "asset_id": "AZURE-CA-002",
+          "paths": 142,
+          "only_fix_needed": 0,
+          "value": 224.51,
+          "algorithm": "RSA-4096",
+          "service_type": "certificate_authority"
+        },
+        {
+          "asset_id": "AWS-CA-002",
+          "paths": 135,
+          "only_fix_needed": 0,
+          "value": 219.16,
+          "algorithm": "RSA-4096",
+          "service_type": "certificate_authority"
+        }
+      ],
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 94,
+            "asset_coverage_pct": 27.1
+          },
+          "path_first": {
+            "safe_paths": 12,
+            "safe_value_pct": 2.8,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 97.2,
+            "false_assurance": 50,
+            "asset_coverage_pct": 14.7
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 32.7,
+            "asset_coverage_pct": 9.2
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 101,
+            "asset_coverage_pct": 30.4
+          },
+          "path_first": {
+            "safe_paths": 26,
+            "safe_value_pct": 6.2,
+            "sensitive_safe": 26,
+            "harvestable_value_pct": 93.8,
+            "false_assurance": 75,
+            "asset_coverage_pct": 21.8
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 39.4,
+            "asset_coverage_pct": 11.0
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 5,
+            "safe_value_pct": 1.1,
+            "sensitive_safe": 5,
+            "harvestable_value_pct": 98.1,
+            "false_assurance": 125,
+            "asset_coverage_pct": 37.5
+          },
+          "path_first": {
+            "safe_paths": 57,
+            "safe_value_pct": 13.2,
+            "sensitive_safe": 57,
+            "harvestable_value_pct": 86.8,
+            "false_assurance": 106,
+            "asset_coverage_pct": 30.4
+          },
+          "path_first_used": 39,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 55.8,
+            "asset_coverage_pct": 15.4
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 9,
+            "safe_value_pct": 2.0,
+            "sensitive_safe": 9,
+            "harvestable_value_pct": 97.2,
+            "false_assurance": 147,
+            "asset_coverage_pct": 43.5
+          },
+          "path_first": {
+            "safe_paths": 87,
+            "safe_value_pct": 20.1,
+            "sensitive_safe": 87,
+            "harvestable_value_pct": 79.7,
+            "false_assurance": 136,
+            "asset_coverage_pct": 41.0
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.5,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.5,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 72,
+            "asset_coverage_pct": 19.8
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 13,
+            "safe_value_pct": 3.0,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 96.5,
+            "false_assurance": 180,
+            "asset_coverage_pct": 53.9
+          },
+          "path_first": {
+            "safe_paths": 185,
+            "safe_value_pct": 40.7,
+            "sensitive_safe": 180,
+            "harvestable_value_pct": 59.3,
+            "false_assurance": 105,
+            "asset_coverage_pct": 53.7
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 1.5,
+            "safe_value_pct": 0.4,
+            "sensitive_safe": 1.5,
+            "harvestable_value_pct": 99.6,
+            "false_assurance": 110.3,
+            "asset_coverage_pct": 30.1
+          }
+        }
+      ]
+    }
+  ],
+  "sweep": [
+    {
+      "profile": "bank",
+      "seed": 1,
+      "assets": 397,
+      "paths": 459,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 19,
+        "asset_coverage_pct": 5.8
+      },
+      "sensitive_paths": 442,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 79,
+            "asset_coverage_pct": 23.2
+          },
+          "path_first": {
+            "safe_paths": 12,
+            "safe_value_pct": 3.2,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 96.8,
+            "false_assurance": 51,
+            "asset_coverage_pct": 14.6
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 26.6,
+            "asset_coverage_pct": 7.8
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 92,
+            "asset_coverage_pct": 28.2
+          },
+          "path_first": {
+            "safe_paths": 27,
+            "safe_value_pct": 7.1,
+            "sensitive_safe": 27,
+            "harvestable_value_pct": 92.9,
+            "false_assurance": 61,
+            "asset_coverage_pct": 17.1
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 32.3,
+            "asset_coverage_pct": 9.4
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 114,
+            "asset_coverage_pct": 34.3
+          },
+          "path_first": {
+            "safe_paths": 69,
+            "safe_value_pct": 16.3,
+            "sensitive_safe": 65,
+            "harvestable_value_pct": 83.7,
+            "false_assurance": 70,
+            "asset_coverage_pct": 25.4
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 46.8,
+            "asset_coverage_pct": 13.2
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 134,
+            "asset_coverage_pct": 40.3
+          },
+          "path_first": {
+            "safe_paths": 106,
+            "safe_value_pct": 25.0,
+            "sensitive_safe": 102,
+            "harvestable_value_pct": 75.0,
+            "false_assurance": 63,
+            "asset_coverage_pct": 32.2
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 59.6,
+            "asset_coverage_pct": 16.6
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 99.3,
+            "false_assurance": 168,
+            "asset_coverage_pct": 50.4
+          },
+          "path_first": {
+            "safe_paths": 198,
+            "safe_value_pct": 44.3,
+            "sensitive_safe": 190,
+            "harvestable_value_pct": 55.7,
+            "false_assurance": 50,
+            "asset_coverage_pct": 44.8
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 0.7,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.7,
+            "harvestable_value_pct": 99.7,
+            "false_assurance": 95.5,
+            "asset_coverage_pct": 26.1
+          }
+        }
+      ]
+    },
+    {
+      "profile": "bank",
+      "seed": 2,
+      "assets": 397,
+      "paths": 498,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 41,
+        "asset_coverage_pct": 11.8
+      },
+      "sensitive_paths": 484,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 79,
+            "asset_coverage_pct": 23.9
+          },
+          "path_first": {
+            "safe_paths": 16,
+            "safe_value_pct": 3.7,
+            "sensitive_safe": 16,
+            "harvestable_value_pct": 96.3,
+            "false_assurance": 59,
+            "asset_coverage_pct": 17.1
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 47.8,
+            "asset_coverage_pct": 13.6
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 90,
+            "asset_coverage_pct": 27.0
+          },
+          "path_first": {
+            "safe_paths": 29,
+            "safe_value_pct": 6.7,
+            "sensitive_safe": 29,
+            "harvestable_value_pct": 93.3,
+            "false_assurance": 68,
+            "asset_coverage_pct": 19.6
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 55.2,
+            "asset_coverage_pct": 15.6
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 1,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 1,
+            "harvestable_value_pct": 99.5,
+            "false_assurance": 109,
+            "asset_coverage_pct": 31.7
+          },
+          "path_first": {
+            "safe_paths": 54,
+            "safe_value_pct": 12.5,
+            "sensitive_safe": 54,
+            "harvestable_value_pct": 87.5,
+            "false_assurance": 94,
+            "asset_coverage_pct": 27.7
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 68.7,
+            "asset_coverage_pct": 19.1
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 13,
+            "safe_value_pct": 3.1,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 93.5,
+            "false_assurance": 137,
+            "asset_coverage_pct": 40.6
+          },
+          "path_first": {
+            "safe_paths": 84,
+            "safe_value_pct": 19.1,
+            "sensitive_safe": 84,
+            "harvestable_value_pct": 80.9,
+            "false_assurance": 110,
+            "asset_coverage_pct": 35.5
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.5,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.5,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 83.2,
+            "asset_coverage_pct": 23.0
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 19,
+            "safe_value_pct": 4.3,
+            "sensitive_safe": 18,
+            "harvestable_value_pct": 91.8,
+            "false_assurance": 173,
+            "asset_coverage_pct": 50.6
+          },
+          "path_first": {
+            "safe_paths": 186,
+            "safe_value_pct": 40.6,
+            "sensitive_safe": 186,
+            "harvestable_value_pct": 59.4,
+            "false_assurance": 103,
+            "asset_coverage_pct": 48.6
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 4.5,
+            "safe_value_pct": 1.0,
+            "sensitive_safe": 4.5,
+            "harvestable_value_pct": 98.7,
+            "false_assurance": 115.5,
+            "asset_coverage_pct": 31.8
+          }
+        }
+      ]
+    },
+    {
+      "profile": "bank",
+      "seed": 3,
+      "assets": 397,
+      "paths": 475,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 20,
+        "asset_coverage_pct": 5.8
+      },
+      "sensitive_paths": 464,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 1,
+            "safe_value_pct": 0.3,
+            "sensitive_safe": 1,
+            "harvestable_value_pct": 99.5,
+            "false_assurance": 79,
+            "asset_coverage_pct": 22.9
+          },
+          "path_first": {
+            "safe_paths": 14,
+            "safe_value_pct": 3.6,
+            "sensitive_safe": 14,
+            "harvestable_value_pct": 96.4,
+            "false_assurance": 48,
+            "asset_coverage_pct": 13.6
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 24.9,
+            "asset_coverage_pct": 7.1
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 6,
+            "safe_value_pct": 1.5,
+            "sensitive_safe": 6,
+            "harvestable_value_pct": 97.5,
+            "false_assurance": 89,
+            "asset_coverage_pct": 27.0
+          },
+          "path_first": {
+            "safe_paths": 27,
+            "safe_value_pct": 6.8,
+            "sensitive_safe": 27,
+            "harvestable_value_pct": 92.6,
+            "false_assurance": 64,
+            "asset_coverage_pct": 17.9
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 32.6,
+            "asset_coverage_pct": 9.1
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 12,
+            "safe_value_pct": 3.0,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 95.4,
+            "false_assurance": 106,
+            "asset_coverage_pct": 32.2
+          },
+          "path_first": {
+            "safe_paths": 47,
+            "safe_value_pct": 11.5,
+            "sensitive_safe": 47,
+            "harvestable_value_pct": 88.5,
+            "false_assurance": 82,
+            "asset_coverage_pct": 24.7
+          },
+          "path_first_used": 38,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 45.2,
+            "asset_coverage_pct": 12.4
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 15,
+            "safe_value_pct": 3.7,
+            "sensitive_safe": 15,
+            "harvestable_value_pct": 94.7,
+            "false_assurance": 126,
+            "asset_coverage_pct": 38.0
+          },
+          "path_first": {
+            "safe_paths": 97,
+            "safe_value_pct": 22.7,
+            "sensitive_safe": 97,
+            "harvestable_value_pct": 77.3,
+            "false_assurance": 57,
+            "asset_coverage_pct": 30.2
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.4,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.4,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 60.0,
+            "asset_coverage_pct": 16.4
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 18,
+            "safe_value_pct": 4.4,
+            "sensitive_safe": 18,
+            "harvestable_value_pct": 92.4,
+            "false_assurance": 165,
+            "asset_coverage_pct": 48.1
+          },
+          "path_first": {
+            "safe_paths": 172,
+            "safe_value_pct": 38.1,
+            "sensitive_safe": 171,
+            "harvestable_value_pct": 61.9,
+            "false_assurance": 47,
+            "asset_coverage_pct": 41.8
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 2.4,
+            "safe_value_pct": 0.6,
+            "sensitive_safe": 2.4,
+            "harvestable_value_pct": 99.2,
+            "false_assurance": 92.8,
+            "asset_coverage_pct": 25.4
+          }
+        }
+      ]
+    },
+    {
+      "profile": "bank",
+      "seed": 4,
+      "assets": 395,
+      "paths": 538,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 22,
+        "asset_coverage_pct": 6.6
+      },
+      "sensitive_paths": 518,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 64,
+            "asset_coverage_pct": 19.2
+          },
+          "path_first": {
+            "safe_paths": 12,
+            "safe_value_pct": 2.6,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 97.4,
+            "false_assurance": 42,
+            "asset_coverage_pct": 11.9
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 28.6,
+            "asset_coverage_pct": 8.3
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 77,
+            "asset_coverage_pct": 25.3
+          },
+          "path_first": {
+            "safe_paths": 25,
+            "safe_value_pct": 5.4,
+            "sensitive_safe": 25,
+            "harvestable_value_pct": 94.6,
+            "false_assurance": 61,
+            "asset_coverage_pct": 17.5
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 33.9,
+            "asset_coverage_pct": 9.7
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 98,
+            "asset_coverage_pct": 30.9
+          },
+          "path_first": {
+            "safe_paths": 53,
+            "safe_value_pct": 11.4,
+            "sensitive_safe": 53,
+            "harvestable_value_pct": 88.4,
+            "false_assurance": 88,
+            "asset_coverage_pct": 25.3
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 49.5,
+            "asset_coverage_pct": 14.0
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.4,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 98.0,
+            "false_assurance": 120,
+            "asset_coverage_pct": 36.7
+          },
+          "path_first": {
+            "safe_paths": 78,
+            "safe_value_pct": 16.8,
+            "sensitive_safe": 78,
+            "harvestable_value_pct": 83.0,
+            "false_assurance": 122,
+            "asset_coverage_pct": 35.4
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 64.2,
+            "asset_coverage_pct": 17.9
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 4,
+            "safe_value_pct": 0.9,
+            "sensitive_safe": 4,
+            "harvestable_value_pct": 97.7,
+            "false_assurance": 158,
+            "asset_coverage_pct": 46.8
+          },
+          "path_first": {
+            "safe_paths": 131,
+            "safe_value_pct": 27.8,
+            "sensitive_safe": 131,
+            "harvestable_value_pct": 72.2,
+            "false_assurance": 144,
+            "asset_coverage_pct": 45.6
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 0.8,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.8,
+            "harvestable_value_pct": 99.6,
+            "false_assurance": 95.4,
+            "asset_coverage_pct": 26.2
+          }
+        }
+      ]
+    },
+    {
+      "profile": "bank",
+      "seed": 5,
+      "assets": 394,
+      "paths": 463,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 36,
+        "asset_coverage_pct": 10.4
+      },
+      "sensitive_paths": 448,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 76,
+            "asset_coverage_pct": 23.1
+          },
+          "path_first": {
+            "safe_paths": 12,
+            "safe_value_pct": 3.1,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 96.9,
+            "false_assurance": 49,
+            "asset_coverage_pct": 14.2
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 41.9,
+            "asset_coverage_pct": 12.0
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 89,
+            "asset_coverage_pct": 27.4
+          },
+          "path_first": {
+            "safe_paths": 29,
+            "safe_value_pct": 7.5,
+            "sensitive_safe": 29,
+            "harvestable_value_pct": 92.5,
+            "false_assurance": 75,
+            "asset_coverage_pct": 21.6
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 47.5,
+            "asset_coverage_pct": 13.5
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 106,
+            "asset_coverage_pct": 32.2
+          },
+          "path_first": {
+            "safe_paths": 56,
+            "safe_value_pct": 13.8,
+            "sensitive_safe": 56,
+            "harvestable_value_pct": 86.2,
+            "false_assurance": 97,
+            "asset_coverage_pct": 27.7
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.3,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.3,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 61.7,
+            "asset_coverage_pct": 17.3
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 16,
+            "safe_value_pct": 3.9,
+            "sensitive_safe": 16,
+            "harvestable_value_pct": 95.1,
+            "false_assurance": 133,
+            "asset_coverage_pct": 40.1
+          },
+          "path_first": {
+            "safe_paths": 109,
+            "safe_value_pct": 25.4,
+            "sensitive_safe": 109,
+            "harvestable_value_pct": 74.6,
+            "false_assurance": 76,
+            "asset_coverage_pct": 35.0
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 1.6,
+            "safe_value_pct": 0.4,
+            "sensitive_safe": 1.6,
+            "harvestable_value_pct": 99.6,
+            "false_assurance": 76.2,
+            "asset_coverage_pct": 21.2
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 21,
+            "safe_value_pct": 5.0,
+            "sensitive_safe": 21,
+            "harvestable_value_pct": 93.5,
+            "false_assurance": 168,
+            "asset_coverage_pct": 50.3
+          },
+          "path_first": {
+            "safe_paths": 185,
+            "safe_value_pct": 42.0,
+            "sensitive_safe": 185,
+            "harvestable_value_pct": 57.5,
+            "false_assurance": 77,
+            "asset_coverage_pct": 49.2
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 3.5,
+            "safe_value_pct": 0.9,
+            "sensitive_safe": 3.5,
+            "harvestable_value_pct": 99.0,
+            "false_assurance": 107.3,
+            "asset_coverage_pct": 29.6
+          }
+        }
+      ]
+    },
+    {
+      "profile": "hospital",
+      "seed": 1,
+      "assets": 397,
+      "paths": 428,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 27,
+        "asset_coverage_pct": 7.8
+      },
+      "sensitive_paths": 422,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 82,
+            "asset_coverage_pct": 23.9
+          },
+          "path_first": {
+            "safe_paths": 13,
+            "safe_value_pct": 3.3,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 96.2,
+            "false_assurance": 50,
+            "asset_coverage_pct": 14.1
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 35.1,
+            "asset_coverage_pct": 10.0
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 92,
+            "asset_coverage_pct": 28.2
+          },
+          "path_first": {
+            "safe_paths": 24,
+            "safe_value_pct": 5.8,
+            "sensitive_safe": 24,
+            "harvestable_value_pct": 93.7,
+            "false_assurance": 78,
+            "asset_coverage_pct": 21.9
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 42.1,
+            "asset_coverage_pct": 11.9
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 110,
+            "asset_coverage_pct": 33.0
+          },
+          "path_first": {
+            "safe_paths": 75,
+            "safe_value_pct": 17.4,
+            "sensitive_safe": 75,
+            "harvestable_value_pct": 82.1,
+            "false_assurance": 67,
+            "asset_coverage_pct": 28.2
+          },
+          "path_first_used": 39,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 56.4,
+            "asset_coverage_pct": 15.7
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 139,
+            "asset_coverage_pct": 41.3
+          },
+          "path_first": {
+            "safe_paths": 102,
+            "safe_value_pct": 24.2,
+            "sensitive_safe": 102,
+            "harvestable_value_pct": 75.8,
+            "false_assurance": 85,
+            "asset_coverage_pct": 37.3
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 73.2,
+            "asset_coverage_pct": 20.2
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 99.0,
+            "false_assurance": 177,
+            "asset_coverage_pct": 51.1
+          },
+          "path_first": {
+            "safe_paths": 207,
+            "safe_value_pct": 49.2,
+            "sensitive_safe": 207,
+            "harvestable_value_pct": 50.8,
+            "false_assurance": 71,
+            "asset_coverage_pct": 49.6
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 0.8,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.7,
+            "harvestable_value_pct": 99.5,
+            "false_assurance": 105.3,
+            "asset_coverage_pct": 28.7
+          }
+        }
+      ]
+    },
+    {
+      "profile": "hospital",
+      "seed": 2,
+      "assets": 393,
+      "paths": 499,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 41,
+        "asset_coverage_pct": 12.0
+      },
+      "sensitive_paths": 487,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 78,
+            "asset_coverage_pct": 23.9
+          },
+          "path_first": {
+            "safe_paths": 16,
+            "safe_value_pct": 3.5,
+            "sensitive_safe": 16,
+            "harvestable_value_pct": 96.3,
+            "false_assurance": 62,
+            "asset_coverage_pct": 17.8
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 47.8,
+            "asset_coverage_pct": 13.8
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 87,
+            "asset_coverage_pct": 26.5
+          },
+          "path_first": {
+            "safe_paths": 28,
+            "safe_value_pct": 6.1,
+            "sensitive_safe": 28,
+            "harvestable_value_pct": 93.9,
+            "false_assurance": 72,
+            "asset_coverage_pct": 20.4
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.3,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.3,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 54.2,
+            "asset_coverage_pct": 15.5
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 11,
+            "safe_value_pct": 2.4,
+            "sensitive_safe": 11,
+            "harvestable_value_pct": 92.5,
+            "false_assurance": 115,
+            "asset_coverage_pct": 35.1
+          },
+          "path_first": {
+            "safe_paths": 53,
+            "safe_value_pct": 11.3,
+            "sensitive_safe": 53,
+            "harvestable_value_pct": 88.4,
+            "false_assurance": 100,
+            "asset_coverage_pct": 28.5
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.4,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.4,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 67.3,
+            "asset_coverage_pct": 19.0
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 14,
+            "safe_value_pct": 3.1,
+            "sensitive_safe": 14,
+            "harvestable_value_pct": 91.3,
+            "false_assurance": 132,
+            "asset_coverage_pct": 40.2
+          },
+          "path_first": {
+            "safe_paths": 80,
+            "safe_value_pct": 17.1,
+            "sensitive_safe": 80,
+            "harvestable_value_pct": 82.6,
+            "false_assurance": 119,
+            "asset_coverage_pct": 33.6
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.6,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.6,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 83.0,
+            "asset_coverage_pct": 23.2
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 29,
+            "safe_value_pct": 5.9,
+            "sensitive_safe": 29,
+            "harvestable_value_pct": 90.4,
+            "false_assurance": 171,
+            "asset_coverage_pct": 50.4
+          },
+          "path_first": {
+            "safe_paths": 142,
+            "safe_value_pct": 29.8,
+            "sensitive_safe": 141,
+            "harvestable_value_pct": 69.4,
+            "false_assurance": 114,
+            "asset_coverage_pct": 47.6
+          },
+          "path_first_used": 99,
+          "random": {
+            "safe_paths": 4.8,
+            "safe_value_pct": 1.0,
+            "sensitive_safe": 4.8,
+            "harvestable_value_pct": 98.6,
+            "false_assurance": 117.5,
+            "asset_coverage_pct": 32.8
+          }
+        }
+      ]
+    },
+    {
+      "profile": "hospital",
+      "seed": 3,
+      "assets": 398,
+      "paths": 474,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 28,
+        "asset_coverage_pct": 7.8
+      },
+      "sensitive_paths": 457,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 77,
+            "asset_coverage_pct": 22.1
+          },
+          "path_first": {
+            "safe_paths": 12,
+            "safe_value_pct": 2.7,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 97.3,
+            "false_assurance": 42,
+            "asset_coverage_pct": 11.8
+          },
+          "path_first_used": 9,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 33.8,
+            "asset_coverage_pct": 9.3
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 88,
+            "asset_coverage_pct": 27.4
+          },
+          "path_first": {
+            "safe_paths": 29,
+            "safe_value_pct": 6.3,
+            "sensitive_safe": 24,
+            "harvestable_value_pct": 93.7,
+            "false_assurance": 49,
+            "asset_coverage_pct": 16.3
+          },
+          "path_first_used": 19,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 40.7,
+            "asset_coverage_pct": 11.1
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 3,
+            "safe_value_pct": 0.7,
+            "sensitive_safe": 3,
+            "harvestable_value_pct": 98.8,
+            "false_assurance": 109,
+            "asset_coverage_pct": 33.4
+          },
+          "path_first": {
+            "safe_paths": 82,
+            "safe_value_pct": 17.4,
+            "sensitive_safe": 74,
+            "harvestable_value_pct": 82.6,
+            "false_assurance": 35,
+            "asset_coverage_pct": 21.6
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 53.7,
+            "asset_coverage_pct": 14.5
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 8,
+            "safe_value_pct": 1.9,
+            "sensitive_safe": 8,
+            "harvestable_value_pct": 97.6,
+            "false_assurance": 126,
+            "asset_coverage_pct": 37.9
+          },
+          "path_first": {
+            "safe_paths": 125,
+            "safe_value_pct": 26.9,
+            "sensitive_safe": 116,
+            "harvestable_value_pct": 73.1,
+            "false_assurance": 41,
+            "asset_coverage_pct": 27.6
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.4,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.4,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 69.0,
+            "asset_coverage_pct": 18.6
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 13,
+            "safe_value_pct": 3.0,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 95.5,
+            "false_assurance": 167,
+            "asset_coverage_pct": 49.0
+          },
+          "path_first": {
+            "safe_paths": 188,
+            "safe_value_pct": 40.7,
+            "sensitive_safe": 178,
+            "harvestable_value_pct": 59.3,
+            "false_assurance": 60,
+            "asset_coverage_pct": 43.0
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 1.9,
+            "safe_value_pct": 0.4,
+            "sensitive_safe": 1.6,
+            "harvestable_value_pct": 99.4,
+            "false_assurance": 103.1,
+            "asset_coverage_pct": 27.9
+          }
+        }
+      ]
+    },
+    {
+      "profile": "hospital",
+      "seed": 4,
+      "assets": 394,
+      "paths": 466,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 34,
+        "asset_coverage_pct": 9.6
+      },
+      "sensitive_paths": 450,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 78,
+            "asset_coverage_pct": 22.8
+          },
+          "path_first": {
+            "safe_paths": 11,
+            "safe_value_pct": 2.7,
+            "sensitive_safe": 11,
+            "harvestable_value_pct": 97.3,
+            "false_assurance": 51,
+            "asset_coverage_pct": 14.5
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 40.4,
+            "asset_coverage_pct": 11.3
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 87,
+            "asset_coverage_pct": 27.4
+          },
+          "path_first": {
+            "safe_paths": 24,
+            "safe_value_pct": 5.7,
+            "sensitive_safe": 24,
+            "harvestable_value_pct": 94.3,
+            "false_assurance": 72,
+            "asset_coverage_pct": 20.1
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 47.6,
+            "asset_coverage_pct": 13.3
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 97.8,
+            "false_assurance": 107,
+            "asset_coverage_pct": 34.0
+          },
+          "path_first": {
+            "safe_paths": 44,
+            "safe_value_pct": 10.5,
+            "sensitive_safe": 44,
+            "harvestable_value_pct": 89.2,
+            "false_assurance": 106,
+            "asset_coverage_pct": 29.7
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 64,
+            "asset_coverage_pct": 17.7
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 97.1,
+            "false_assurance": 127,
+            "asset_coverage_pct": 39.1
+          },
+          "path_first": {
+            "safe_paths": 71,
+            "safe_value_pct": 16.8,
+            "sensitive_safe": 71,
+            "harvestable_value_pct": 83.2,
+            "false_assurance": 128,
+            "asset_coverage_pct": 36.5
+          },
+          "path_first_used": 58,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 77.1,
+            "asset_coverage_pct": 21.2
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 3,
+            "safe_value_pct": 0.8,
+            "sensitive_safe": 3,
+            "harvestable_value_pct": 96.3,
+            "false_assurance": 167,
+            "asset_coverage_pct": 49.2
+          },
+          "path_first": {
+            "safe_paths": 154,
+            "safe_value_pct": 35.3,
+            "sensitive_safe": 151,
+            "harvestable_value_pct": 64.7,
+            "false_assurance": 84,
+            "asset_coverage_pct": 47.2
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 0.9,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.9,
+            "harvestable_value_pct": 99.2,
+            "false_assurance": 107.2,
+            "asset_coverage_pct": 29.4
+          }
+        }
+      ]
+    },
+    {
+      "profile": "hospital",
+      "seed": 5,
+      "assets": 395,
+      "paths": 514,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 33,
+        "asset_coverage_pct": 9.6
+      },
+      "sensitive_paths": 503,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 83,
+            "asset_coverage_pct": 24.8
+          },
+          "path_first": {
+            "safe_paths": 14,
+            "safe_value_pct": 2.9,
+            "sensitive_safe": 14,
+            "harvestable_value_pct": 97.1,
+            "false_assurance": 43,
+            "asset_coverage_pct": 12.9
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 40.0,
+            "asset_coverage_pct": 11.5
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 94,
+            "asset_coverage_pct": 28.9
+          },
+          "path_first": {
+            "safe_paths": 29,
+            "safe_value_pct": 6.0,
+            "sensitive_safe": 29,
+            "harvestable_value_pct": 94.0,
+            "false_assurance": 57,
+            "asset_coverage_pct": 17.0
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 47.1,
+            "asset_coverage_pct": 13.4
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 112,
+            "asset_coverage_pct": 33.9
+          },
+          "path_first": {
+            "safe_paths": 55,
+            "safe_value_pct": 11.0,
+            "sensitive_safe": 55,
+            "harvestable_value_pct": 89.0,
+            "false_assurance": 87,
+            "asset_coverage_pct": 27.1
+          },
+          "path_first_used": 39,
+          "random": {
+            "safe_paths": 0.6,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.6,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 60.9,
+            "asset_coverage_pct": 17.0
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 13,
+            "safe_value_pct": 2.6,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 96.8,
+            "false_assurance": 134,
+            "asset_coverage_pct": 40.0
+          },
+          "path_first": {
+            "safe_paths": 111,
+            "safe_value_pct": 21.8,
+            "sensitive_safe": 108,
+            "harvestable_value_pct": 78.2,
+            "false_assurance": 66,
+            "asset_coverage_pct": 32.4
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 1.6,
+            "safe_value_pct": 0.3,
+            "sensitive_safe": 1.6,
+            "harvestable_value_pct": 99.6,
+            "false_assurance": 76.5,
+            "asset_coverage_pct": 21.4
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 21,
+            "safe_value_pct": 4.3,
+            "sensitive_safe": 21,
+            "harvestable_value_pct": 95.3,
+            "false_assurance": 171,
+            "asset_coverage_pct": 50.1
+          },
+          "path_first": {
+            "safe_paths": 189,
+            "safe_value_pct": 36.3,
+            "sensitive_safe": 184,
+            "harvestable_value_pct": 63.7,
+            "false_assurance": 44,
+            "asset_coverage_pct": 46.1
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 5.2,
+            "safe_value_pct": 1.0,
+            "sensitive_safe": 5.0,
+            "harvestable_value_pct": 98.8,
+            "false_assurance": 109.8,
+            "asset_coverage_pct": 30.3
+          }
+        }
+      ]
+    },
+    {
+      "profile": "generic",
+      "seed": 1,
+      "assets": 395,
+      "paths": 485,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 22,
+        "asset_coverage_pct": 6.6
+      },
+      "sensitive_paths": 467,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 82,
+            "asset_coverage_pct": 24.1
+          },
+          "path_first": {
+            "safe_paths": 9,
+            "safe_value_pct": 2.0,
+            "sensitive_safe": 9,
+            "harvestable_value_pct": 97.8,
+            "false_assurance": 53,
+            "asset_coverage_pct": 15.4
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 29.6,
+            "asset_coverage_pct": 8.6
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 93,
+            "asset_coverage_pct": 29.1
+          },
+          "path_first": {
+            "safe_paths": 21,
+            "safe_value_pct": 4.7,
+            "sensitive_safe": 21,
+            "harvestable_value_pct": 95.3,
+            "false_assurance": 70,
+            "asset_coverage_pct": 20.5
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 35.5,
+            "asset_coverage_pct": 10.2
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 113,
+            "asset_coverage_pct": 35.4
+          },
+          "path_first": {
+            "safe_paths": 48,
+            "safe_value_pct": 10.9,
+            "sensitive_safe": 48,
+            "harvestable_value_pct": 89.1,
+            "false_assurance": 105,
+            "asset_coverage_pct": 30.6
+          },
+          "path_first_used": 39,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 50.1,
+            "asset_coverage_pct": 14.1
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 133,
+            "asset_coverage_pct": 40.5
+          },
+          "path_first": {
+            "safe_paths": 78,
+            "safe_value_pct": 17.8,
+            "sensitive_safe": 78,
+            "harvestable_value_pct": 82.2,
+            "false_assurance": 128,
+            "asset_coverage_pct": 37.2
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 63.2,
+            "asset_coverage_pct": 17.6
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 3,
+            "safe_value_pct": 0.7,
+            "sensitive_safe": 3,
+            "harvestable_value_pct": 98.4,
+            "false_assurance": 168,
+            "asset_coverage_pct": 50.6
+          },
+          "path_first": {
+            "safe_paths": 149,
+            "safe_value_pct": 32.2,
+            "sensitive_safe": 144,
+            "harvestable_value_pct": 67.8,
+            "false_assurance": 127,
+            "asset_coverage_pct": 48.9
+          },
+          "path_first_used": 99,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 97.8,
+            "asset_coverage_pct": 26.8
+          }
+        }
+      ]
+    },
+    {
+      "profile": "generic",
+      "seed": 2,
+      "assets": 397,
+      "paths": 487,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 54,
+        "asset_coverage_pct": 15.1
+      },
+      "sensitive_paths": 474,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 93,
+            "asset_coverage_pct": 27.5
+          },
+          "path_first": {
+            "safe_paths": 12,
+            "safe_value_pct": 3.0,
+            "sensitive_safe": 12,
+            "harvestable_value_pct": 96.8,
+            "false_assurance": 71,
+            "asset_coverage_pct": 19.9
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 61.0,
+            "asset_coverage_pct": 17.0
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 102,
+            "asset_coverage_pct": 30.7
+          },
+          "path_first": {
+            "safe_paths": 23,
+            "safe_value_pct": 5.6,
+            "sensitive_safe": 23,
+            "harvestable_value_pct": 90.9,
+            "false_assurance": 81,
+            "asset_coverage_pct": 22.9
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 68.5,
+            "asset_coverage_pct": 19.0
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 9,
+            "safe_value_pct": 2.1,
+            "sensitive_safe": 9,
+            "harvestable_value_pct": 94.5,
+            "false_assurance": 124,
+            "asset_coverage_pct": 37.0
+          },
+          "path_first": {
+            "safe_paths": 62,
+            "safe_value_pct": 13.9,
+            "sensitive_safe": 62,
+            "harvestable_value_pct": 86.1,
+            "false_assurance": 110,
+            "asset_coverage_pct": 31.0
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.7,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.7,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 81.5,
+            "asset_coverage_pct": 22.5
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 11,
+            "safe_value_pct": 2.6,
+            "sensitive_safe": 11,
+            "harvestable_value_pct": 92.8,
+            "false_assurance": 150,
+            "asset_coverage_pct": 44.1
+          },
+          "path_first": {
+            "safe_paths": 87,
+            "safe_value_pct": 19.5,
+            "sensitive_safe": 87,
+            "harvestable_value_pct": 80.0,
+            "false_assurance": 125,
+            "asset_coverage_pct": 38.3
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.8,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.8,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 96.5,
+            "asset_coverage_pct": 26.5
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 14,
+            "safe_value_pct": 3.3,
+            "sensitive_safe": 14,
+            "harvestable_value_pct": 91.4,
+            "false_assurance": 186,
+            "asset_coverage_pct": 54.2
+          },
+          "path_first": {
+            "safe_paths": 172,
+            "safe_value_pct": 36.6,
+            "sensitive_safe": 172,
+            "harvestable_value_pct": 63.4,
+            "false_assurance": 105,
+            "asset_coverage_pct": 49.6
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 4.5,
+            "safe_value_pct": 1.0,
+            "sensitive_safe": 4.5,
+            "harvestable_value_pct": 98.8,
+            "false_assurance": 134.1,
+            "asset_coverage_pct": 36.6
+          }
+        }
+      ]
+    },
+    {
+      "profile": "generic",
+      "seed": 3,
+      "assets": 396,
+      "paths": 458,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 16,
+        "asset_coverage_pct": 4.8
+      },
+      "sensitive_paths": 441,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 66,
+            "asset_coverage_pct": 19.4
+          },
+          "path_first": {
+            "safe_paths": 8,
+            "safe_value_pct": 1.9,
+            "sensitive_safe": 8,
+            "harvestable_value_pct": 98.1,
+            "false_assurance": 36,
+            "asset_coverage_pct": 10.4
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 21.6,
+            "asset_coverage_pct": 6.3
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 3,
+            "safe_value_pct": 0.8,
+            "sensitive_safe": 3,
+            "harvestable_value_pct": 98.7,
+            "false_assurance": 82,
+            "asset_coverage_pct": 26.3
+          },
+          "path_first": {
+            "safe_paths": 24,
+            "safe_value_pct": 5.9,
+            "sensitive_safe": 24,
+            "harvestable_value_pct": 94.1,
+            "false_assurance": 53,
+            "asset_coverage_pct": 14.9
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 28.6,
+            "asset_coverage_pct": 8.2
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 4,
+            "safe_value_pct": 1.0,
+            "sensitive_safe": 4,
+            "harvestable_value_pct": 98.2,
+            "false_assurance": 99,
+            "asset_coverage_pct": 31.1
+          },
+          "path_first": {
+            "safe_paths": 62,
+            "safe_value_pct": 14.4,
+            "sensitive_safe": 56,
+            "harvestable_value_pct": 85.6,
+            "false_assurance": 53,
+            "asset_coverage_pct": 22.5
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 41,
+            "asset_coverage_pct": 11.4
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 8,
+            "safe_value_pct": 2.0,
+            "sensitive_safe": 8,
+            "harvestable_value_pct": 97.0,
+            "false_assurance": 120,
+            "asset_coverage_pct": 37.1
+          },
+          "path_first": {
+            "safe_paths": 94,
+            "safe_value_pct": 21.7,
+            "sensitive_safe": 88,
+            "harvestable_value_pct": 78.1,
+            "false_assurance": 59,
+            "asset_coverage_pct": 31.1
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.7,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.7,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 56.2,
+            "asset_coverage_pct": 15.6
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 16,
+            "safe_value_pct": 3.8,
+            "sensitive_safe": 16,
+            "harvestable_value_pct": 93.0,
+            "false_assurance": 157,
+            "asset_coverage_pct": 47.2
+          },
+          "path_first": {
+            "safe_paths": 179,
+            "safe_value_pct": 40.6,
+            "sensitive_safe": 172,
+            "harvestable_value_pct": 59.4,
+            "false_assurance": 36,
+            "asset_coverage_pct": 41.9
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 99.4,
+            "false_assurance": 92.5,
+            "asset_coverage_pct": 25.2
+          }
+        }
+      ]
+    },
+    {
+      "profile": "generic",
+      "seed": 4,
+      "assets": 395,
+      "paths": 532,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 26,
+        "asset_coverage_pct": 7.6
+      },
+      "sensitive_paths": 517,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 58,
+            "asset_coverage_pct": 17.5
+          },
+          "path_first": {
+            "safe_paths": 13,
+            "safe_value_pct": 2.9,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 97.1,
+            "false_assurance": 36,
+            "asset_coverage_pct": 10.4
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 32,
+            "asset_coverage_pct": 9.2
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 77,
+            "asset_coverage_pct": 25.3
+          },
+          "path_first": {
+            "safe_paths": 25,
+            "safe_value_pct": 5.4,
+            "sensitive_safe": 25,
+            "harvestable_value_pct": 94.2,
+            "false_assurance": 50,
+            "asset_coverage_pct": 14.2
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 38.8,
+            "asset_coverage_pct": 11.0
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 97,
+            "asset_coverage_pct": 30.4
+          },
+          "path_first": {
+            "safe_paths": 68,
+            "safe_value_pct": 14.3,
+            "sensitive_safe": 68,
+            "harvestable_value_pct": 85.6,
+            "false_assurance": 47,
+            "asset_coverage_pct": 21.3
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 53.5,
+            "asset_coverage_pct": 15.0
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 1,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 1,
+            "harvestable_value_pct": 99.1,
+            "false_assurance": 118,
+            "asset_coverage_pct": 36.5
+          },
+          "path_first": {
+            "safe_paths": 109,
+            "safe_value_pct": 21.9,
+            "sensitive_safe": 109,
+            "harvestable_value_pct": 77.9,
+            "false_assurance": 34,
+            "asset_coverage_pct": 26.8
+          },
+          "path_first_used": 60,
+          "random": {
+            "safe_paths": 0.2,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.2,
+            "harvestable_value_pct": 99.9,
+            "false_assurance": 68.2,
+            "asset_coverage_pct": 18.9
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 1,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 1,
+            "harvestable_value_pct": 98.3,
+            "false_assurance": 157,
+            "asset_coverage_pct": 46.6
+          },
+          "path_first": {
+            "safe_paths": 197,
+            "safe_value_pct": 38.9,
+            "sensitive_safe": 192,
+            "harvestable_value_pct": 61.1,
+            "false_assurance": 36,
+            "asset_coverage_pct": 40.8
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 0.8,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 0.8,
+            "harvestable_value_pct": 99.6,
+            "false_assurance": 98.3,
+            "asset_coverage_pct": 27.0
+          }
+        }
+      ]
+    },
+    {
+      "profile": "generic",
+      "seed": 5,
+      "assets": 396,
+      "paths": 482,
+      "truncated": false,
+      "hop_model_mismatch": 0,
+      "now": {
+        "safe_paths": 0,
+        "safe_value_pct": 0.0,
+        "sensitive_safe": 0,
+        "harvestable_value_pct": 100.0,
+        "false_assurance": 30,
+        "asset_coverage_pct": 8.8
+      },
+      "sensitive_paths": 466,
+      "budgets": [
+        {
+          "budget": 10,
+          "per_asset": {
+            "safe_paths": 0,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 66,
+            "asset_coverage_pct": 20.2
+          },
+          "path_first": {
+            "safe_paths": 14,
+            "safe_value_pct": 3.3,
+            "sensitive_safe": 14,
+            "harvestable_value_pct": 96.7,
+            "false_assurance": 52,
+            "asset_coverage_pct": 15.2
+          },
+          "path_first_used": 10,
+          "random": {
+            "safe_paths": 0.1,
+            "safe_value_pct": 0.0,
+            "sensitive_safe": 0.1,
+            "harvestable_value_pct": 100.0,
+            "false_assurance": 36.9,
+            "asset_coverage_pct": 10.7
+          }
+        },
+        {
+          "budget": 20,
+          "per_asset": {
+            "safe_paths": 2,
+            "safe_value_pct": 0.5,
+            "sensitive_safe": 2,
+            "harvestable_value_pct": 99.5,
+            "false_assurance": 84,
+            "asset_coverage_pct": 26.3
+          },
+          "path_first": {
+            "safe_paths": 29,
+            "safe_value_pct": 6.8,
+            "sensitive_safe": 29,
+            "harvestable_value_pct": 93.0,
+            "false_assurance": 64,
+            "asset_coverage_pct": 18.9
+          },
+          "path_first_used": 20,
+          "random": {
+            "safe_paths": 0.6,
+            "safe_value_pct": 0.1,
+            "sensitive_safe": 0.6,
+            "harvestable_value_pct": 99.8,
+            "false_assurance": 45.1,
+            "asset_coverage_pct": 12.9
+          }
+        },
+        {
+          "budget": 40,
+          "per_asset": {
+            "safe_paths": 8,
+            "safe_value_pct": 1.9,
+            "sensitive_safe": 8,
+            "harvestable_value_pct": 97.8,
+            "false_assurance": 104,
+            "asset_coverage_pct": 32.1
+          },
+          "path_first": {
+            "safe_paths": 85,
+            "safe_value_pct": 18.3,
+            "sensitive_safe": 85,
+            "harvestable_value_pct": 80.9,
+            "false_assurance": 58,
+            "asset_coverage_pct": 26.3
+          },
+          "path_first_used": 40,
+          "random": {
+            "safe_paths": 1,
+            "safe_value_pct": 0.2,
+            "sensitive_safe": 1,
+            "harvestable_value_pct": 99.7,
+            "false_assurance": 59.4,
+            "asset_coverage_pct": 16.8
+          }
+        },
+        {
+          "budget": 60,
+          "per_asset": {
+            "safe_paths": 10,
+            "safe_value_pct": 2.4,
+            "sensitive_safe": 10,
+            "harvestable_value_pct": 96.9,
+            "false_assurance": 132,
+            "asset_coverage_pct": 39.9
+          },
+          "path_first": {
+            "safe_paths": 122,
+            "safe_value_pct": 26.3,
+            "sensitive_safe": 122,
+            "harvestable_value_pct": 73.7,
+            "false_assurance": 53,
+            "asset_coverage_pct": 31.1
+          },
+          "path_first_used": 59,
+          "random": {
+            "safe_paths": 1.6,
+            "safe_value_pct": 0.4,
+            "sensitive_safe": 1.6,
+            "harvestable_value_pct": 99.5,
+            "false_assurance": 75.7,
+            "asset_coverage_pct": 21.2
+          }
+        },
+        {
+          "budget": 100,
+          "per_asset": {
+            "safe_paths": 13,
+            "safe_value_pct": 3.0,
+            "sensitive_safe": 13,
+            "harvestable_value_pct": 96.0,
+            "false_assurance": 172,
+            "asset_coverage_pct": 50.0
+          },
+          "path_first": {
+            "safe_paths": 183,
+            "safe_value_pct": 39.3,
+            "sensitive_safe": 183,
+            "harvestable_value_pct": 60.4,
+            "false_assurance": 46,
+            "asset_coverage_pct": 43.9
+          },
+          "path_first_used": 100,
+          "random": {
+            "safe_paths": 6.8,
+            "safe_value_pct": 1.5,
+            "sensitive_safe": 6.5,
+            "harvestable_value_pct": 98.2,
+            "false_assurance": 107.2,
+            "asset_coverage_pct": 30.0
+          }
+        }
+      ]
+    }
+  ],
+  "sweep_mean": [
+    {
+      "budget": 10,
+      "per_asset.safe_paths": 0.1,
+      "per_asset.safe_value_pct": 0.0,
+      "per_asset.false_assurance": 76,
+      "per_asset.asset_coverage_pct": 22.6,
+      "path_first.safe_paths": 12.5,
+      "path_first.safe_value_pct": 3.0,
+      "path_first.false_assurance": 49.7,
+      "path_first.asset_coverage_pct": 14.3,
+      "random.safe_paths": 0.0,
+      "random.safe_value_pct": 0.0,
+      "random.false_assurance": 36.5,
+      "random.asset_coverage_pct": 10.4,
+      "estates_where_path_first_secures_more": 15
+    },
+    {
+      "budget": 20,
+      "per_asset.safe_paths": 0.7,
+      "per_asset.safe_value_pct": 0.2,
+      "per_asset.false_assurance": 88.2,
+      "per_asset.asset_coverage_pct": 27.4,
+      "path_first.safe_paths": 26.2,
+      "path_first.safe_value_pct": 6.1,
+      "path_first.false_assurance": 65,
+      "path_first.asset_coverage_pct": 18.7,
+      "random.safe_paths": 0.1,
+      "random.safe_value_pct": 0.0,
+      "random.false_assurance": 43.3,
+      "random.asset_coverage_pct": 12.3,
+      "estates_where_path_first_secures_more": 15
+    },
+    {
+      "budget": 40,
+      "per_asset.safe_paths": 3.3,
+      "per_asset.safe_value_pct": 0.8,
+      "per_asset.false_assurance": 108.2,
+      "per_asset.asset_coverage_pct": 33.1,
+      "path_first.safe_paths": 60.9,
+      "path_first.safe_value_pct": 13.7,
+      "path_first.false_assurance": 79.9,
+      "path_first.asset_coverage_pct": 26.5,
+      "random.safe_paths": 0.3,
+      "random.safe_value_pct": 0.1,
+      "random.false_assurance": 57.3,
+      "random.asset_coverage_pct": 16.0,
+      "estates_where_path_first_secures_more": 15
+    },
+    {
+      "budget": 60,
+      "per_asset.safe_paths": 7.5,
+      "per_asset.safe_value_pct": 1.8,
+      "per_asset.false_assurance": 130.7,
+      "per_asset.asset_coverage_pct": 39.5,
+      "path_first.safe_paths": 96.9,
+      "path_first.safe_value_pct": 21.5,
+      "path_first.false_assurance": 84.4,
+      "path_first.asset_coverage_pct": 33.3,
+      "random.safe_paths": 0.6,
+      "random.safe_value_pct": 0.1,
+      "random.false_assurance": 72.1,
+      "random.asset_coverage_pct": 20.0,
+      "estates_where_path_first_secures_more": 15
+    },
+    {
+      "budget": 100,
+      "per_asset.safe_paths": 11.9,
+      "per_asset.safe_value_pct": 2.7,
+      "per_asset.false_assurance": 168.3,
+      "per_asset.asset_coverage_pct": 49.6,
+      "path_first.safe_paths": 175.5,
+      "path_first.safe_value_pct": 38.1,
+      "path_first.false_assurance": 76.3,
+      "path_first.asset_coverage_pct": 45.9,
+      "random.safe_paths": 2.7,
+      "random.safe_value_pct": 0.6,
+      "random.false_assurance": 105.3,
+      "random.asset_coverage_pct": 28.9,
+      "estates_where_path_first_secures_more": 15
+    }
+  ]
+}

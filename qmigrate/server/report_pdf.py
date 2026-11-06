@@ -42,7 +42,8 @@ def _table(rows, widths, header=True):
 
 
 def build_report(tenant: dict, overview: dict, readiness: dict, report: dict, plan: dict,
-                 history: list[dict], simulated: bool, config_check: dict | None = None) -> bytes:
+                 history: list[dict], simulated: bool, config_check: dict | None = None,
+                 path_report: dict | None = None) -> bytes:
     buf = io.BytesIO()
     W = A4[0] - 36 * mm
     generated = datetime.now(timezone.utc).strftime("%d %B %Y, %H:%M UTC")
@@ -140,6 +141,20 @@ def build_report(tenant: dict, overview: dict, readiness: dict, report: dict, pl
                          f"{h['from_alg'] or ''} -> {h['to_alg'] or ''}" if h["action"] != "reset" else "all assets restored",
                          h["user_email"] or "system"])
         s.append(_table(rows, [W * 0.2, W * 0.12, W * 0.18, W * 0.32, W * 0.18]))
+
+    if path_report and path_report.get("has_paths"):
+        pr, now = path_report, path_report["now"]
+        w1 = next((c for c in pr["comparison"] if c["budget"] == pr["wave1_size"]), pr["comparison"][0])
+        s.append(Paragraph("Data paths: safe end to end?", h2))
+        s.append(Paragraph(
+            f"A path is only as quantum-safe as its weakest hop. <b>{now['safe_paths']}</b> of {now['paths']} data "
+            f"paths are safe end to end today, while {now['asset_coverage_pct']}% of assets are quantum-safe on their "
+            f"own. <b>{now['false_assurance']}</b> assets look safe but carry data that is readable at another hop. "
+            f"With the same {w1['budget']} migrations, the asset queue makes {w1['per_asset']['safe_paths']} paths safe "
+            f"and path-first planning makes {w1['path_first']['safe_paths']}.", body))
+        rows = [["Hop that blocks the most paths", "Algorithm", "Paths"]]
+        rows += [[b["asset_id"], b["algorithm"], b["paths"]] for b in pr["bottlenecks"][:8]]
+        s.append(_table(rows, [W * 0.5, W * 0.3, W * 0.2]))
 
     if config_check and config_check.get("findings"):
         cc = config_check

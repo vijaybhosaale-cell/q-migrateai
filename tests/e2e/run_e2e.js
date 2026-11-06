@@ -232,6 +232,14 @@ async function waitHealthySeed() {
     await shot("12-models", true);
   });
 
+  await step("Data paths: end-to-end safety next to asset coverage", async () => {
+    await go("paths");
+    await page.waitForSelector("[data-body] tr");
+    const t = await text("#page");
+    assert.ok(t.includes("Data paths safe end to end") && t.includes("Path-first"), "paths page should compare both orders");
+    await shot("12a-paths", true);
+  });
+
   await step("Config check: a pinned nginx list is reported as post-quantum off, with the fix", async () => {
     await go("config-check");
     await page.waitForSelector("[data-run]");

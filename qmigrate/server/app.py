@@ -652,6 +652,10 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
             raise Invalid(f"Unknown scenario. Use one of: {', '.join(SCENARIOS)}.")
         return platform.require_estate(ctx["tid"]).deadline_overview(scenario)
 
+    @app.get("/api/paths")
+    def data_paths(ctx: dict = Depends(need("read"))):
+        return platform.require_estate(ctx["tid"]).path_report()
+
     @app.get("/api/readiness")
     def readiness(ctx: dict = Depends(need("read"))):
         return platform.readiness(ctx["tid"])
@@ -720,7 +724,7 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
         if cc:
             cc = {"files": json.loads(cc["files"]), "findings": json.loads(cc["findings"]), "created_at": cc["created_at"]}
         pdf = report_pdf.build_report(tenant, est.overview(), platform.readiness(tid), est.report(), est.plan(),
-                                      history, simulated, cc)
+                                      history, simulated, cc, est.path_report())
         name = f"Q-MigrateAI_report_{tenant['slug']}_{datetime.now(timezone.utc):%Y-%m-%d}.pdf"
         return Response(pdf, media_type="application/pdf", headers={"Content-Disposition": f'attachment; filename="{name}"'})
 

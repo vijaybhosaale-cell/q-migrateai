@@ -18,7 +18,7 @@ import numpy as np
 from qmigrate.engine import graph as g
 from qmigrate.engine import deadline as dl
 from qmigrate.engine import explain as xai
-from qmigrate.engine import migrate, models, risk
+from qmigrate.engine import migrate, models, paths, risk
 from qmigrate.engine.catalog import ALGORITHMS, MIGRATION_EFFORT, SAFE_STATUSES, SERVICE_LABELS, USAGE_TEXT
 
 INHERIT_THRESHOLD = 0.85
@@ -90,6 +90,7 @@ class Estate:
         self._queue_cache = None
         self._whatif_cache = None
         self._deadline_cache: dict[str, dict] = {}
+        self._paths_cache: dict | None = None
 
     # ------------------------------------------------------------ internals
     def _features(self, state: dict):
@@ -334,6 +335,43 @@ class Estate:
             item["wave"] = wave_of(rank)
         self._queue_cache = clean(items)
         return self._queue_cache
+
+    # ------------------------------------------------------------ data paths (P7)
+    def path_report(self) -> dict:
+        """End-to-end view: each data path is as quantum-safe as its weakest hop (see engine/paths.py)."""
+        if self._paths_cache is not None:
+            return self._paths_cache
+        m = paths.PathModel(self.graph, self.current)
+        if not m.paths:
+            self._paths_cache = {"has_paths": False, "paths": 0}
+            return self._paths_cache
+        ev = m.evaluate()
+        before = m.evaluate(self.discovered)
+        rows = self.view["rows"]
+        label = lambda n: {"asset_id": n, "service_label": rows[n]["service_label"],  # noqa: E731
+                           "application": rows[n]["application"], "algorithm": rows[n]["algorithm"],
+                           "safe": rows[n]["quantum_safe"]}
+        wave1 = sum(1 for x in self.queue() if x["wave"] == "Wave 1")
+        plan = m.plan_path_first(wave1) if wave1 else []
+        top = m.path_rows(ev, limit=150)
+        for r in top:
+            r["hops"] = [label(n) for n in r["hops"]]
+        self._paths_cache = clean({
+            "has_paths": True,
+            "now": paths._row(m, ev) | {"paths": ev["paths"], "sensitive_paths": ev["sensitive_paths"],
+                                        "harvestable_paths": ev["harvestable_paths"]},
+            "discovered": paths._row(m, before) | {"paths": before["paths"]},
+            "truncated": m.truncated,
+            "false_assurance": [label(n) for n in ev["false_assurance"]][:100],
+            "bottlenecks": [b | {"service_label": rows[b["asset_id"]]["service_label"],
+                                 "application": rows[b["asset_id"]]["application"]} for b in m.bottlenecks(ev, 12)],
+            "paths": top,
+            "comparison": paths.compare(m, self.queue(), sorted({wave1, 60}) if wave1 else (20, 60)),
+            "path_first_wave": [{**x, "service_label": rows[x["asset_id"]]["service_label"],
+                                 "algorithm": rows[x["asset_id"]]["algorithm"]} for x in plan],
+            "wave1_size": wave1,
+        })
+        return self._paths_cache
 
     def plan(self) -> dict:
         q = self.queue()

@@ -83,6 +83,18 @@ absence, with the product's sourced default:
 * Naming ML-KEM in nginx, HAProxy or Apache stops the server from starting on OpenSSL 3.0–3.4 (3.0–3.2 even with
   `?`). The check reports the oldest OpenSSL each list needs.
 
+## 5. A data path is only as safe as its weakest hop (P7)
+
+Code and results: `qmigrate/engine/paths.py`, `qmigrate/research/p7_paths/`. In the platform: the **Data paths**
+page.
+
+Harvest-now-decrypt-later needs one readable hop, so the unit that matters is the path data travels, not the
+asset. On both demo companies, Wave 1 of the per-asset queue raises asset coverage from about 8% to about 28% but
+leaves none of about 450 data paths safe end to end, and the number of assets that look safe while carrying
+harvestable data more than triples. With the same 20 migrations, path-first planning makes about 25 paths safe.
+The same holds in 15 more generated estates. Limit: the evaluation uses synthetic estates, because no real
+source here provides data-flow links yet.
+
 ## Related work and what is different
 
 Cite these two papers; a reviewer who knows the field will expect them.

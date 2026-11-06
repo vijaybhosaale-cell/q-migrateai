@@ -13,6 +13,7 @@ import { planPage } from "./pages/plan.js";
 import { labPage } from "./pages/lab.js";
 import { reportPage } from "./pages/report.js";
 import { configCheckPage } from "./pages/configcheck.js";
+import { pathsPage } from "./pages/paths.js";
 import { alertsPage } from "./pages/alerts.js";
 import { auditPage } from "./pages/audit.js";
 import { settingsPage } from "./pages/settings.js";
@@ -40,6 +41,7 @@ const routes: Record<string, Page> = {
   lab: { title: "PQC lab", render: labPage },
   report: { title: "Measure and report", render: reportPage },
   "config-check": { title: "Config check", render: configCheckPage },
+  paths: { title: "Data paths", render: pathsPage },
   alerts: { title: "Alerts", render: alertsPage },
   audit: { title: "Audit log", render: auditPage, perm: "audit" },
   settings: { title: "Settings", render: settingsPage },
@@ -57,6 +59,7 @@ const NAV: { group: string; items: { route: string; label: string; icon: string;
   ] },
   { group: "Insight and operations", items: [
     { route: "project-data", label: "Project data", icon: "list", href: "/project-data/" },
+    { route: "paths", label: "Data paths", icon: "graph" },
     { route: "config-check", label: "Config check", icon: "shield" },
     { route: "models", label: "AI models", icon: "brain" },
     { route: "alerts", label: "Alerts", icon: "bell" },
