@@ -42,7 +42,7 @@ def _table(rows, widths, header=True):
 
 
 def build_report(tenant: dict, overview: dict, readiness: dict, report: dict, plan: dict,
-                 history: list[dict], simulated: bool) -> bytes:
+                 history: list[dict], simulated: bool, config_check: dict | None = None) -> bytes:
     buf = io.BytesIO()
     W = A4[0] - 36 * mm
     generated = datetime.now(timezone.utc).strftime("%d %B %Y, %H:%M UTC")
@@ -140,6 +140,19 @@ def build_report(tenant: dict, overview: dict, readiness: dict, report: dict, pl
                          f"{h['from_alg'] or ''} -> {h['to_alg'] or ''}" if h["action"] != "reset" else "all assets restored",
                          h["user_email"] or "system"])
         s.append(_table(rows, [W * 0.2, W * 0.12, W * 0.18, W * 0.32, W * 0.18]))
+
+    if config_check and config_check.get("findings"):
+        cc = config_check
+        off = sum(1 for f in cc["findings"] if f["outcome"].startswith("off_"))
+        s.append(Paragraph("TLS configuration check", h2))
+        s.append(Paragraph(
+            f"Latest check {cc['created_at'][:10]} of {_esc(', '.join(cc['files']))}: "
+            f"<b>{len(cc['findings'])}</b> TLS setting(s) or listener(s), <b>{off}</b> with post-quantum key exchange "
+            "switched off by a pinned list or by the product default. Supporting post-quantum is not the same as "
+            "negotiating it: these endpoints stay classical until the setting changes.", body))
+        rows = [["File:line", "Product", "Result", "What to change"]]
+        rows += [[f"{f['file']}:{f['line']}", f["product"], f["outcome_text"], f["advice"]] for f in cc["findings"][:15]]
+        s.append(_table(rows, [W * 0.18, W * 0.13, W * 0.2, W * 0.49]))
 
     s.append(KeepTogether([
         Paragraph("Method and limits", h2),

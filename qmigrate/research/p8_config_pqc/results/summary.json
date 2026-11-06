@@ -1,0 +1,521 @@
+{
+  "generated": "2026-11-06",
+  "groups": {
+    "copied_config": {
+      "explicit": 7,
+      "readable": 5,
+      "pq_enabled": 0,
+      "pq_excluded": 5,
+      "no_setting": 40,
+      "pinned_classical_pct": 100.0
+    },
+    "shipped_code": {
+      "explicit": 32,
+      "readable": 8,
+      "pq_enabled": 1,
+      "pq_excluded": 7,
+      "no_setting": 124,
+      "pinned_classical_pct": 87.5
+    },
+    "tests_docs": {
+      "explicit": 108,
+      "readable": 49,
+      "pq_enabled": 12,
+      "pq_excluded": 37,
+      "no_setting": 237,
+      "pinned_classical_pct": 75.5
+    }
+  },
+  "repositories": 37,
+  "repositories_scanned": 37,
+  "files_scanned": 79593,
+  "findings": 581,
+  "explicit_settings": 147,
+  "explicit_by_class": {
+    "pq_enabled": 10,
+    "unresolved": 85,
+    "pq_excluded": 49,
+    "pq_mesh_policy": 3
+  },
+  "explicit_deployable": 39,
+  "explicit_deployable_by_class": {
+    "pq_excluded": 12,
+    "pq_enabled": 1,
+    "unresolved": 26
+  },
+  "explicit_deployable_readable": 13,
+  "pinned_classical_deployable": 12,
+  "pq_enabled_deployable": 1,
+  "pinned_classical_share_of_readable_deployable": 92.3,
+  "pq_enabled_share_of_readable_deployable": 7.7,
+  "deployable_outcomes": {
+    "off_default": 5,
+    "on_if_go124": 126,
+    "off_pinned": 12,
+    "on": 1,
+    "unknown": 27,
+    "depends_library": 33
+  },
+  "hard_fail_risk": 0,
+  "hard_fail_risk_deployable": 0,
+  "explicit_by_product": {
+    "apache": {
+      "pq_excluded": 1
+    },
+    "aws-elb": {
+      "pq_excluded": 21,
+      "unresolved": 1
+    },
+    "envoy": {
+      "pq_enabled": 1
+    },
+    "envoy-gateway": {
+      "pq_excluded": 12,
+      "unresolved": 36,
+      "pq_enabled": 2
+    },
+    "go": {
+      "unresolved": 36,
+      "pq_enabled": 7,
+      "pq_excluded": 10
+    },
+    "istio": {
+      "pq_mesh_policy": 3
+    },
+    "nginx": {
+      "unresolved": 1,
+      "pq_excluded": 2
+    },
+    "traefik": {
+      "pq_excluded": 3,
+      "unresolved": 11
+    }
+  },
+  "explicit_by_category": {
+    "chart": {
+      "unresolved": 1
+    },
+    "deploy": {
+      "unresolved": 1,
+      "pq_excluded": 3
+    },
+    "docs": {
+      "pq_enabled": 1,
+      "pq_excluded": 10,
+      "unresolved": 7
+    },
+    "example": {
+      "pq_excluded": 2
+    },
+    "source": {
+      "pq_excluded": 7,
+      "pq_enabled": 1,
+      "unresolved": 24
+    },
+    "test": {
+      "unresolved": 52,
+      "pq_excluded": 27,
+      "pq_mesh_policy": 3,
+      "pq_enabled": 8
+    }
+  },
+  "per_repo": {
+    "envoyproxy/envoy": {
+      "kind": "proxy",
+      "commit": "37b20cf873b4",
+      "files": 1785,
+      "explicit": 1,
+      "pq_enabled": 1,
+      "pq_excluded": 0,
+      "defaults": 26,
+      "error": ""
+    },
+    "envoyproxy/gateway": {
+      "kind": "gateway",
+      "commit": "3e91fbc9781c",
+      "files": 7148,
+      "explicit": 44,
+      "pq_enabled": 0,
+      "pq_excluded": 9,
+      "defaults": 53,
+      "error": ""
+    },
+    "istio/istio": {
+      "kind": "mesh",
+      "commit": "c533e83a50a3",
+      "files": 5635,
+      "explicit": 23,
+      "pq_enabled": 10,
+      "pq_excluded": 6,
+      "defaults": 25,
+      "error": ""
+    },
+    "cilium/cilium": {
+      "kind": "mesh",
+      "commit": "00354062bc9e",
+      "files": 7130,
+      "explicit": 4,
+      "pq_enabled": 0,
+      "pq_excluded": 4,
+      "defaults": 34,
+      "error": ""
+    },
+    "hashicorp/consul": {
+      "kind": "mesh",
+      "commit": "c711a9f2bab4",
+      "files": 2870,
+      "explicit": 1,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 8,
+      "error": ""
+    },
+    "emissary-ingress/emissary": {
+      "kind": "gateway",
+      "commit": "00def85caebb",
+      "files": 1028,
+      "explicit": 1,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 9,
+      "error": ""
+    },
+    "projectcontour/contour": {
+      "kind": "gateway",
+      "commit": "aa8615298f19",
+      "files": 2554,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 4,
+      "error": ""
+    },
+    "kgateway-dev/kgateway": {
+      "kind": "gateway",
+      "commit": "1989318ba332",
+      "files": 2682,
+      "explicit": 7,
+      "pq_enabled": 2,
+      "pq_excluded": 3,
+      "defaults": 56,
+      "error": ""
+    },
+    "apache/apisix": {
+      "kind": "gateway",
+      "commit": "77055643b8db",
+      "files": 710,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 3,
+      "error": ""
+    },
+    "traefik/traefik": {
+      "kind": "proxy",
+      "commit": "e237cc4e64db",
+      "files": 2028,
+      "explicit": 17,
+      "pq_enabled": 0,
+      "pq_excluded": 2,
+      "defaults": 8,
+      "error": ""
+    },
+    "caddyserver/caddy": {
+      "kind": "proxy",
+      "commit": "f4d9826bf2a1",
+      "files": 722,
+      "explicit": 3,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 3,
+      "error": ""
+    },
+    "kubernetes/ingress-nginx": {
+      "kind": "ingress",
+      "commit": "dbb11b92ddb7",
+      "files": 912,
+      "explicit": 1,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 17,
+      "error": ""
+    },
+    "nginx/kubernetes-ingress": {
+      "kind": "ingress",
+      "commit": "4d69ce362b71",
+      "files": 1972,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 27,
+      "error": ""
+    },
+    "haproxytech/kubernetes-ingress": {
+      "kind": "ingress",
+      "commit": "60ac0251db88",
+      "files": 695,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 1,
+      "error": ""
+    },
+    "Kong/kubernetes-ingress-controller": {
+      "kind": "ingress",
+      "commit": "5fa96bf06f2f",
+      "files": 898,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 6,
+      "error": ""
+    },
+    "bitnami/charts": {
+      "kind": "chart",
+      "commit": "893617002038",
+      "files": 3859,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 2,
+      "error": ""
+    },
+    "prometheus-community/helm-charts": {
+      "kind": "chart",
+      "commit": "4384d7213121",
+      "files": 1123,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "grafana/helm-charts": {
+      "kind": "chart",
+      "commit": "80d6bc92a466",
+      "files": 463,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "argoproj/argo-helm": {
+      "kind": "chart",
+      "commit": "c8930a23d8ab",
+      "files": 324,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "traefik/traefik-helm-chart": {
+      "kind": "chart",
+      "commit": "419535d48b0c",
+      "files": 160,
+      "explicit": 5,
+      "pq_enabled": 0,
+      "pq_excluded": 1,
+      "defaults": 0,
+      "error": ""
+    },
+    "haproxytech/helm-charts": {
+      "kind": "chart",
+      "commit": "aeac27a9040a",
+      "files": 185,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 1,
+      "error": ""
+    },
+    "Kong/charts": {
+      "kind": "chart",
+      "commit": "7f0ed3cf6476",
+      "files": 305,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "mozilla/ssl-config-generator": {
+      "kind": "template",
+      "commit": "99178dcaf7e1",
+      "files": 15,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "h5bp/server-configs-nginx": {
+      "kind": "template",
+      "commit": "d2f2c3e2fac7",
+      "files": 41,
+      "explicit": 2,
+      "pq_enabled": 0,
+      "pq_excluded": 2,
+      "defaults": 4,
+      "error": ""
+    },
+    "h5bp/server-configs-apache": {
+      "kind": "template",
+      "commit": "f9feb463fe13",
+      "files": 54,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 2,
+      "error": ""
+    },
+    "nginx-proxy/nginx-proxy": {
+      "kind": "template",
+      "commit": "bff2cddfece8",
+      "files": 154,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 3,
+      "error": ""
+    },
+    "linuxserver/docker-swag": {
+      "kind": "template",
+      "commit": "24000edb531a",
+      "files": 12,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "NginxProxyManager/nginx-proxy-manager": {
+      "kind": "template",
+      "commit": "ea7e7468dfa6",
+      "files": 406,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 3,
+      "error": ""
+    },
+    "certbot/certbot": {
+      "kind": "template",
+      "commit": "138defe9c7c6",
+      "files": 424,
+      "explicit": 1,
+      "pq_enabled": 0,
+      "pq_excluded": 1,
+      "defaults": 23,
+      "error": ""
+    },
+    "kubernetes/kubernetes": {
+      "kind": "infra",
+      "commit": "671745e4ffcf",
+      "files": 21831,
+      "explicit": 6,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 31,
+      "error": ""
+    },
+    "etcd-io/etcd": {
+      "kind": "infra",
+      "commit": "cda871cc9521",
+      "files": 1212,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 5,
+      "error": ""
+    },
+    "hashicorp/vault": {
+      "kind": "infra",
+      "commit": "81bb5d42e1ff",
+      "files": 5800,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 27,
+      "error": ""
+    },
+    "prometheus/prometheus": {
+      "kind": "infra",
+      "commit": "62aca1806f5b",
+      "files": 1272,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 0,
+      "error": ""
+    },
+    "minio/minio": {
+      "kind": "infra",
+      "commit": "7aac2a2c5b7c",
+      "files": 1052,
+      "explicit": 9,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 8,
+      "error": ""
+    },
+    "cert-manager/cert-manager": {
+      "kind": "infra",
+      "commit": "8a358469e26a",
+      "files": 1099,
+      "explicit": 0,
+      "pq_enabled": 0,
+      "pq_excluded": 0,
+      "defaults": 5,
+      "error": ""
+    },
+    "terraform-aws-modules/terraform-aws-alb": {
+      "kind": "iac",
+      "commit": "6c6e48c10d45",
+      "files": 44,
+      "explicit": 6,
+      "pq_enabled": 0,
+      "pq_excluded": 6,
+      "defaults": 0,
+      "error": ""
+    },
+    "kubernetes-sigs/aws-load-balancer-controller": {
+      "kind": "iac",
+      "commit": "46813afa652c",
+      "files": 989,
+      "explicit": 16,
+      "pq_enabled": 0,
+      "pq_excluded": 15,
+      "defaults": 7,
+      "error": ""
+    }
+  },
+  "newest_mozilla_guideline": {
+    "version": "6.0",
+    "lists": {
+      "modern": [
+        "X25519MLKEM768",
+        "X25519",
+        "prime256v1",
+        "secp384r1"
+      ],
+      "intermediate": [
+        "X25519MLKEM768",
+        "X25519",
+        "prime256v1",
+        "secp384r1"
+      ]
+    }
+  },
+  "pinned_copied_from_older_guideline": [
+    {
+      "repo": "certbot/certbot",
+      "path": "certbot/src/certbot/_internal/plugins/apache/tls_configs/current-options-ssl-apache.conf",
+      "line": 11,
+      "values": "X25519 prime256v1 secp384r1",
+      "same_list_as": "Mozilla 5.7 intermediate / Mozilla 5.7 old",
+      "link": "https://github.com/certbot/certbot/blob/138defe9c7c68ceb29a66cbd5f3a346567139211/certbot/src/certbot/_internal/plugins/apache/tls_configs/current-options-ssl-apache.conf#L11"
+    }
+  ]
+}

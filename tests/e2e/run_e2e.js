@@ -1,6 +1,6 @@
 // End-to-end browser test of the whole Q-MigrateAI journey, with screenshots.
 //
-// The expected numbers (399 assets, 347 quantum-exposed...) come from the synthetic simulator, because live
+// The expected numbers (399 assets, 350 quantum-exposed...) come from the synthetic simulator, because live
 // website measurements change every day. Start the platform on a FRESH database in simulator mode:
 //   ENABLE_SIMULATOR=1 DATA_SOURCE=simulator python -m uvicorn qmigrate.server.app:app --port 8002
 // then:
@@ -133,7 +133,7 @@ async function waitHealthySeed() {
     await page.waitForSelector(".kpi-value");
     const t = await text("#page");
     assert.ok(t.includes("399"), "expected 399 assets");
-    assert.ok(t.includes("347"), "expected 347 quantum-exposed");
+    assert.ok(t.includes("350"), "expected 350 quantum-exposed");
     assert.ok(t.includes("PQC readiness"));
     await page.waitForTimeout(300);
     await shot("03-dashboard", true);
@@ -232,6 +232,17 @@ async function waitHealthySeed() {
     await shot("12-models", true);
   });
 
+  await step("Config check: a pinned nginx list is reported as post-quantum off, with the fix", async () => {
+    await go("config-check");
+    await page.waitForSelector("[data-run]");
+    await page.click("[data-example]");
+    await page.click("[data-run]");
+    await page.waitForSelector("[data-result] table");
+    const t = await text("[data-result]");
+    assert.ok(t.includes("Off: pinned") && t.includes("X25519MLKEM768"), "the check should show the pinned list and the fix");
+    await shot("12b-config-check", true);
+  });
+
   await step("Report page and one-click PDF", async () => {
     await go("report");
     await page.waitForSelector("[data-pdf]");
@@ -254,6 +265,7 @@ async function waitHealthySeed() {
     await page.waitForSelector("[data-body] tr");
     const t = await text("[data-body]");
     assert.ok(t.includes("Migrated a wave") && t.includes("Rolled back an asset"), "audit should list the wave and the rollback");
+    assert.ok(t.includes("Checked TLS configuration"), "audit should list the config check");
     await shot("15-audit");
   });
 
@@ -278,7 +290,7 @@ async function waitHealthySeed() {
     const me = await (await page.request.get(`${BASE}/api/auth/me`)).json();
     assert.equal(me.tenant.name, "Demo Health Group");
     const t = await text("#page");
-    assert.ok(!t.includes("347"), "should not show Demo Finance numbers");
+    assert.ok(!t.includes("350"), "should not show Demo Finance numbers");
     await shot("17-tenant-health", true);
     await logout();
   });

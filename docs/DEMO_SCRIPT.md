@@ -24,7 +24,7 @@ AI models page, **Abdul Fathah** runs step 4, the report and the deployment slid
 
 ### 1. Dashboard (45 s)
 
-- Readiness dial **36 %**. "399 cryptographic assets, **347 quantum-exposed**, only 8 % quantum-safe, 45 Critical."
+- Readiness dial **36 %**. "399 cryptographic assets, **350 quantum-exposed**, only 8 % quantum-safe, 51 Critical."
 - Point at *Migrate first*: "The top items are shared KMS keys: one key protects 150 other assets."
 
 ### 2. Map dependencies (1 min 30) · the wow moment
@@ -34,7 +34,7 @@ AI models page, **Abdul Fathah** runs step 4, the report and the deployment slid
   which a per-asset scanner misses."
 - Click **Migrate Wave 1 live** → confirm.
 - While it animates: "Twenty assets move to hybrid X25519 + ML-KEM-768 or ML-DSA. Watch the counters:
-  quantum-exposed goes from **347 to 236**, coverage from 8 % to 29 %, Critical from 45 to 17."
+  quantum-exposed goes from **350 to 241**, coverage from 8 % to 28 %, Critical from 51 to 33."
 
 ### 3. Assess risk (1 min) · AI explanation
 

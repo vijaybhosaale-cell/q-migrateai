@@ -1,0 +1,261 @@
+[
+  {
+    "repo": "envoyproxy/envoy",
+    "kind": "proxy",
+    "commit": "37b20cf873b481b4936c69e4b385ebded0de6b9f",
+    "files_scanned": 1785,
+    "error": ""
+  },
+  {
+    "repo": "envoyproxy/gateway",
+    "kind": "gateway",
+    "commit": "3e91fbc9781c39c6b0066ddf0a9b6bb473e358f8",
+    "files_scanned": 7148,
+    "error": ""
+  },
+  {
+    "repo": "istio/istio",
+    "kind": "mesh",
+    "commit": "c533e83a50a37fcb47a535c4fb66679fcd963b71",
+    "files_scanned": 5635,
+    "error": ""
+  },
+  {
+    "repo": "cilium/cilium",
+    "kind": "mesh",
+    "commit": "00354062bc9e4197116db27ed6c3feb03aca0543",
+    "files_scanned": 7130,
+    "error": ""
+  },
+  {
+    "repo": "hashicorp/consul",
+    "kind": "mesh",
+    "commit": "c711a9f2bab4cc41cc826c2bdf80bde6f07d44a6",
+    "files_scanned": 2870,
+    "error": ""
+  },
+  {
+    "repo": "emissary-ingress/emissary",
+    "kind": "gateway",
+    "commit": "00def85caebb895b27354797f567f013d715d414",
+    "files_scanned": 1028,
+    "error": ""
+  },
+  {
+    "repo": "projectcontour/contour",
+    "kind": "gateway",
+    "commit": "aa8615298f19a380c4506abeafca182c945bb64b",
+    "files_scanned": 2554,
+    "error": ""
+  },
+  {
+    "repo": "kgateway-dev/kgateway",
+    "kind": "gateway",
+    "commit": "1989318ba332dde6491b0447741a7a1fdb1315e7",
+    "files_scanned": 2682,
+    "error": ""
+  },
+  {
+    "repo": "apache/apisix",
+    "kind": "gateway",
+    "commit": "77055643b8db34e2058f6a90b1b0d346136be968",
+    "files_scanned": 710,
+    "error": ""
+  },
+  {
+    "repo": "traefik/traefik",
+    "kind": "proxy",
+    "commit": "e237cc4e64db8a6a97c8f9e49d4a7718e3f77422",
+    "files_scanned": 2028,
+    "error": ""
+  },
+  {
+    "repo": "caddyserver/caddy",
+    "kind": "proxy",
+    "commit": "f4d9826bf2a10a83c3c27223eb0df3dc63c1a51b",
+    "files_scanned": 722,
+    "error": ""
+  },
+  {
+    "repo": "kubernetes/ingress-nginx",
+    "kind": "ingress",
+    "commit": "dbb11b92ddb77bee9c35e462479129354c84f939",
+    "files_scanned": 912,
+    "error": ""
+  },
+  {
+    "repo": "nginx/kubernetes-ingress",
+    "kind": "ingress",
+    "commit": "4d69ce362b71908a6e9216072db5fcfdf95f60cb",
+    "files_scanned": 1972,
+    "error": ""
+  },
+  {
+    "repo": "haproxytech/kubernetes-ingress",
+    "kind": "ingress",
+    "commit": "60ac0251db8891b856b1773db3538800af6c9688",
+    "files_scanned": 695,
+    "error": ""
+  },
+  {
+    "repo": "Kong/kubernetes-ingress-controller",
+    "kind": "ingress",
+    "commit": "5fa96bf06f2f051853ed7b4f41003bda9931ecc3",
+    "files_scanned": 898,
+    "error": ""
+  },
+  {
+    "repo": "bitnami/charts",
+    "kind": "chart",
+    "commit": "893617002038e004458bab28a14b126de43bc3e7",
+    "files_scanned": 3859,
+    "error": ""
+  },
+  {
+    "repo": "prometheus-community/helm-charts",
+    "kind": "chart",
+    "commit": "4384d7213121014d7bc09b29298a3662762cc737",
+    "files_scanned": 1123,
+    "error": ""
+  },
+  {
+    "repo": "grafana/helm-charts",
+    "kind": "chart",
+    "commit": "80d6bc92a4669c4dd3e834df8f0abbafee74ffa4",
+    "files_scanned": 463,
+    "error": ""
+  },
+  {
+    "repo": "argoproj/argo-helm",
+    "kind": "chart",
+    "commit": "c8930a23d8ab7e8fcd64d8a61843344f4dca028b",
+    "files_scanned": 324,
+    "error": ""
+  },
+  {
+    "repo": "traefik/traefik-helm-chart",
+    "kind": "chart",
+    "commit": "419535d48b0cb561bbd3778cd35061a2756c09ea",
+    "files_scanned": 160,
+    "error": ""
+  },
+  {
+    "repo": "haproxytech/helm-charts",
+    "kind": "chart",
+    "commit": "aeac27a9040af8f935e3105c70c6a5e7446f597b",
+    "files_scanned": 185,
+    "error": ""
+  },
+  {
+    "repo": "Kong/charts",
+    "kind": "chart",
+    "commit": "7f0ed3cf64768660bc716ed3cc945dc673f1f7d4",
+    "files_scanned": 305,
+    "error": ""
+  },
+  {
+    "repo": "mozilla/ssl-config-generator",
+    "kind": "template",
+    "commit": "99178dcaf7e1c0e5a0b5f783b1767cc47e1bf3e7",
+    "files_scanned": 15,
+    "error": ""
+  },
+  {
+    "repo": "h5bp/server-configs-nginx",
+    "kind": "template",
+    "commit": "d2f2c3e2fac76f429adb738894499b8fb756d2f3",
+    "files_scanned": 41,
+    "error": ""
+  },
+  {
+    "repo": "h5bp/server-configs-apache",
+    "kind": "template",
+    "commit": "f9feb463fe136620ccde264b4cfbddfd8cd473b5",
+    "files_scanned": 54,
+    "error": ""
+  },
+  {
+    "repo": "nginx-proxy/nginx-proxy",
+    "kind": "template",
+    "commit": "bff2cddfece8e4f2c6d00b62ba45b8214c4727c5",
+    "files_scanned": 154,
+    "error": ""
+  },
+  {
+    "repo": "linuxserver/docker-swag",
+    "kind": "template",
+    "commit": "24000edb531a50939fd4e1a9e5943aa659fb2dab",
+    "files_scanned": 12,
+    "error": ""
+  },
+  {
+    "repo": "NginxProxyManager/nginx-proxy-manager",
+    "kind": "template",
+    "commit": "ea7e7468dfa65237008a05e0b2a9c3d407fe8278",
+    "files_scanned": 406,
+    "error": ""
+  },
+  {
+    "repo": "certbot/certbot",
+    "kind": "template",
+    "commit": "138defe9c7c68ceb29a66cbd5f3a346567139211",
+    "files_scanned": 424,
+    "error": ""
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "kind": "infra",
+    "commit": "671745e4ffcf3ee0110f6446ef3b5f032db2c51c",
+    "files_scanned": 21831,
+    "error": ""
+  },
+  {
+    "repo": "etcd-io/etcd",
+    "kind": "infra",
+    "commit": "cda871cc952195664ebec450b77709c12f2d2a88",
+    "files_scanned": 1212,
+    "error": ""
+  },
+  {
+    "repo": "hashicorp/vault",
+    "kind": "infra",
+    "commit": "81bb5d42e1ff74b84e02d590e02416c198df3f2e",
+    "files_scanned": 5800,
+    "error": ""
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "kind": "infra",
+    "commit": "62aca1806f5b9a6d13b91951e5184894d61e1be4",
+    "files_scanned": 1272,
+    "error": ""
+  },
+  {
+    "repo": "minio/minio",
+    "kind": "infra",
+    "commit": "7aac2a2c5b7c882e68c1ce017d8256be2feea27f",
+    "files_scanned": 1052,
+    "error": ""
+  },
+  {
+    "repo": "cert-manager/cert-manager",
+    "kind": "infra",
+    "commit": "8a358469e26a53d619268ba45154bae2bcb3ac0f",
+    "files_scanned": 1099,
+    "error": ""
+  },
+  {
+    "repo": "terraform-aws-modules/terraform-aws-alb",
+    "kind": "iac",
+    "commit": "6c6e48c10d450d01cf6715346e926df0b858efc2",
+    "files_scanned": 44,
+    "error": ""
+  },
+  {
+    "repo": "kubernetes-sigs/aws-load-balancer-controller",
+    "kind": "iac",
+    "commit": "46813afa652c390e6c3d8410b42f26e4fb371c55",
+    "files_scanned": 989,
+    "error": ""
+  }
+]

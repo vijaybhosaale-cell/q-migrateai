@@ -64,6 +64,25 @@ It writes `data/research/evaluation_<date>.md` (tables ready for the thesis) and
 | Are the explanations faithful? | Deletion test on the test split: probability drop when the 3 explained inputs are reset vs 3 random inputs (ratio), and how often the prediction changes |
 | Do the AI and the formula point at the same reasons? | Jaccard overlap of the named factors, split by whether their classes agree |
 
+## 4. Supported is not switched on (P8)
+
+Code and data: `qmigrate/research/p8_config_pqc/` (report in `results/summary.md`). In the platform: the
+**Config check** page.
+
+Software support for hybrid ML-KEM does not mean a deployment negotiates it. The study scans 37 public
+repositories (79,593 files, every finding pinned to a commit) and combines each key-exchange setting, or its
+absence, with the product's sourced default:
+
+* Outside tests and docs, 12 of the 13 readable key-exchange settings pin a classical-only list. Most projects
+  set nothing, so the product default decides. Envoy, Istio and Envoy Gateway default to off. Go-based servers
+  default to on from Go 1.24. nginx, HAProxy and Apache depend on the OpenSSL version.
+* Certbot's Apache options file pins the curve list from an earlier Mozilla guideline, which Mozilla has since
+  updated to put X25519MLKEM768 first.
+* On AWS the default depends on the tool that creates the listener: the console uses a PQ policy, while the
+  API, CloudFormation and CDK (and the AWS Load Balancer Controller) default to `ELBSecurityPolicy-2016-08`.
+* Naming ML-KEM in nginx, HAProxy or Apache stops the server from starting on OpenSSL 3.0–3.4 (3.0–3.2 even with
+  `?`). The check reports the oldest OpenSSL each list needs.
+
 ## Related work and what is different
 
 Cite these two papers; a reviewer who knows the field will expect them.
@@ -72,6 +91,11 @@ Cite these two papers; a reviewer who knows the field will expect them.
 |---|---|---|
 | A. Gupta, S. Mittal, [Post-quantum readiness and cryptographic transition planning for enterprise cloud](https://link.springer.com/article/10.1186/s42400-026-00579-2), *Cybersecurity* 9, 147 (2026) | Mosca's inequality with a Monte Carlo estimator and expert-elicited Q-day timing, to compare migration start years and durations | Their model treats sensitive data as one stream for the organisation; ours gives a deadline **per asset**, from that asset's own data lifetime and dependants |
 | A. Shaw, [Cost of Delay for Post-Quantum Migration](https://arxiv.org/abs/2610.09029), arXiv:2610.09029 (2026) | A per-asset ordered list that combines classical and harvest-now-decrypt-later risk as a cost of delay | Their case studies use parameters assumed from public documentation and are not validated against outcomes; ours runs on **measured** data (live TLS and certificate measurements, cloud APIs), derives migration time from the **dependency graph** (an asset inherits the deadline of the key that protects it) and explains every result in plain words |
+
+| H. Balaji et al., [Operationalising Post-Quantum TLS: Automated Configuration Profiling and Hybrid PQC Deployment in Financial Infrastructure](https://arxiv.org/abs/2605.17955), arXiv:2605.17955 (2026) | Parses nginx, Apache and Spring Boot TLS configuration; measures 8,443 public nginx configs (the hybrid curve appears in 4, about 0.8% of contexts that set a curve) | P8 covers 11 products, including Envoy, Istio, Envoy Gateway, Go and AWS load balancers, where defaults differ; it reports the **effective outcome** (pinned off, default off, on, version-dependent), the OpenSSL version a list needs to load, and copy lineage against Mozilla's guideline versions |
+| Moderne OpenRewrite recipes ([PQC recipe catalog](https://docs.moderne.io/user-documentation/recipes/recipe-catalog/cryptography/pqc/)) | Commercial code-rewrite recipes; by their names they find TLS named-group configuration and add a hybrid group | P8 measures and explains across configuration formats rather than rewriting one language's code |
+
+Our P8 numbers point the same way as Balaji et al.: explicit lists that include ML-KEM are rare.
 
 So the honest claim is not "the first deadline", but: *a per-asset quantum deadline computed from a measured
 dependency graph, with faithful explanations, evaluated against the rule baseline.*

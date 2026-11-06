@@ -19,7 +19,7 @@ from qmigrate.config import Settings, settings as default_settings
 from qmigrate.engine import assistant
 from qmigrate.engine.catalog import ALGORITHMS, CLASSICAL_FACTS, PQC_FACTS
 from qmigrate.engine.estate import clean
-from qmigrate.server import project_data, report_pdf
+from qmigrate.server import config_check, project_data, report_pdf
 from qmigrate.server.connectors.base import ConnectorNotReady
 from qmigrate.server.connectors.clouds import PROVIDERS, make_connector
 from qmigrate.server.db import Database, new_id, now_iso
@@ -108,6 +108,15 @@ class CorrectionBody(BaseModel):
 
 class DeleteBody(BaseModel):
     confirm: str = Field(max_length=200)
+
+
+class ConfigFile(BaseModel):
+    name: str = Field(default="config", max_length=200)
+    text: str = Field(max_length=config_check.MAX_FILE_CHARS)
+
+
+class ConfigCheckBody(BaseModel):
+    files: list[ConfigFile] = Field(min_length=1, max_length=config_check.MAX_FILES)
 
 
 # ---------------------------------------------------------------- factory
@@ -551,6 +560,35 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
                          "ON c.id = r.connection_id AND c.tenant_id = r.tenant_id WHERE r.tenant_id = ? "
                          "ORDER BY r.started_at DESC LIMIT 20", (ctx["tid"],))
 
+    # ======================================================= config check (P8)
+    @app.post("/api/config-check")
+    def run_config_check(body: ConfigCheckBody, ctx: dict = Depends(need("validate"))):
+        if sum(len(f.text) for f in body.files) > config_check.MAX_TOTAL_CHARS:
+            raise Invalid("Too much text in one check. Send at most 1 MB of configuration at a time.")
+        result = config_check.check([f.model_dump() for f in body.files])
+        cid = new_id()
+        with db.session(ctx["tid"]) as c:
+            c.execute("INSERT INTO config_checks (id, tenant_id, user_email, files, summary, findings, created_at) "
+                      "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                      (cid, ctx["tid"], ctx["user"]["email"], json.dumps(result["files"]),
+                       json.dumps(result["summary"]), json.dumps(result["findings"]), now_iso()))
+            platform.audit(c, ctx["tid"], ctx["user"], "config.checked", ", ".join(result["files"])[:200],
+                           {"findings": result["summary"]["findings"], "verdict": result["summary"]["verdict"]},
+                           ctx["ip"])
+        return {"id": cid, **result}
+
+    @app.get("/api/config-check")
+    def config_checks(ctx: dict = Depends(need("read"))):
+        with db.session(ctx["tid"]) as c:
+            rows = c.all("SELECT id, user_email, files, summary, findings, created_at FROM config_checks "
+                         "WHERE tenant_id = ? ORDER BY created_at DESC LIMIT 10", (ctx["tid"],))
+        for i, r in enumerate(rows):
+            r["files"] = json.loads(r["files"])
+            r["summary"] = json.loads(r["summary"])
+            r["findings"] = json.loads(r["findings"]) if i == 0 else None    # full detail for the latest only
+        return {"checks": rows, "study": config_check.study_headline(),
+                "limits": {"files": config_check.MAX_FILES, "file_chars": config_check.MAX_FILE_CHARS}}
+
     # ============================================================== data
     @app.get("/api/overview")
     def overview(ctx: dict = Depends(need("read"))):
@@ -676,9 +714,13 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
         with db.session(tid) as c:
             history = c.all("SELECT * FROM migrations WHERE tenant_id = ? ORDER BY created_at DESC", (tid,))
             simulated = bool(c.one("SELECT id FROM cloud_connections WHERE tenant_id = ? AND provider = 'simulator'", (tid,)))
+            cc = c.one("SELECT files, findings, created_at FROM config_checks WHERE tenant_id = ? "
+                       "ORDER BY created_at DESC", (tid,))
             platform.audit(c, tid, ctx["user"], "report.downloaded", "PDF report", {}, ctx["ip"])
+        if cc:
+            cc = {"files": json.loads(cc["files"]), "findings": json.loads(cc["findings"]), "created_at": cc["created_at"]}
         pdf = report_pdf.build_report(tenant, est.overview(), platform.readiness(tid), est.report(), est.plan(),
-                                      history, simulated)
+                                      history, simulated, cc)
         name = f"Q-MigrateAI_report_{tenant['slug']}_{datetime.now(timezone.utc):%Y-%m-%d}.pdf"
         return Response(pdf, media_type="application/pdf", headers={"Content-Disposition": f'attachment; filename="{name}"'})
 

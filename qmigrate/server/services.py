@@ -585,7 +585,7 @@ class Platform:
             out["settings"] = c.one("SELECT alert_email, slack_webhook, monitor_interval_hours FROM tenant_settings "
                                     "WHERE tenant_id = ?", (tid,))
             for table in ["cloud_connections", "discovery_runs", "assets", "dependencies", "migrations", "audit_log",
-                          "alerts", "notification_outbox"]:
+                          "alerts", "notification_outbox", "config_checks"]:
                 out[table] = c.all(f"SELECT * FROM {table} WHERE tenant_id = ?", (tid,))
             out["model_runs"] = c.all("SELECT id, created_at, seed, is_active, metrics FROM model_runs WHERE tenant_id = ?", (tid,))
         return clean(out)
@@ -594,7 +594,8 @@ class Platform:
         with self._locks[tid]:
             with self.db.session(tid) as c:
                 c.execute("DELETE FROM sessions WHERE tenant_id = ?", (tid,))
-                for table in ["notification_outbox", "alerts", "audit_log", "migrations", "model_runs", "dependencies",
+                for table in ["config_checks", "notification_outbox", "alerts", "audit_log", "migrations", "model_runs",
+                              "dependencies",
                               "assets", "discovery_runs", "cloud_connections", "tenant_settings", "users"]:
                     c.execute(f"DELETE FROM {table} WHERE tenant_id = ?", (tid,))
                 c.execute("DELETE FROM tenants WHERE id = ?", (tid,))

@@ -9,7 +9,7 @@ const LABEL = {
     "discovery.started": "Started discovery", "discovery.completed": "Discovery finished", "discovery.failed": "Discovery failed",
     "models.retrained": "Retrained the models", "migration.applied": "Migrated an asset", "migration.wave": "Migrated a wave",
     "migration.rolled_back": "Rolled back an asset", "migration.reset": "Reset to discovered state",
-    "settings.updated": "Changed alert settings", "report.downloaded": "Downloaded the PDF report", "gdpr.export": "Exported all data",
+    "settings.updated": "Changed alert settings", "config.checked": "Checked TLS configuration", "report.downloaded": "Downloaded the PDF report", "gdpr.export": "Exported all data",
 };
 function details(d) {
     return Object.entries(d).map(([k, v]) => `${k.replace(/_/g, " ")}: ${typeof v === "object" ? JSON.stringify(v) : String(v)}`).join(", ");

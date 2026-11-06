@@ -25,7 +25,7 @@ log = logging.getLogger("qmigrate.db")
 
 TENANT_TABLES = [
     "users", "tenant_settings", "cloud_connections", "discovery_runs", "assets", "dependencies",
-    "model_runs", "migrations", "audit_log", "alerts", "notification_outbox",
+    "model_runs", "migrations", "audit_log", "alerts", "notification_outbox", "config_checks",
 ]
 
 SCHEMA = """
@@ -181,6 +181,16 @@ CREATE TABLE IF NOT EXISTS alerts (
     read_at TEXT
 );
 CREATE INDEX IF NOT EXISTS ix_alerts_tenant ON alerts(tenant_id, created_at);
+CREATE TABLE IF NOT EXISTS config_checks (
+    id TEXT PRIMARY KEY,
+    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+    user_email TEXT,
+    files TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    findings TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_cfg_tenant ON config_checks(tenant_id, created_at);
 CREATE TABLE IF NOT EXISTS notification_outbox (
     id TEXT PRIMARY KEY,
     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,

@@ -60,12 +60,13 @@ The 8-minute demo flow is in **[docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)**.
 |---|---|---|
 | Sign up | Create account | Company account with GDPR consent; the creator is admin |
 | 1 | Connect and discover | Read-only connection (simulator by default; AWS/Azure/GCP access design shown); discovery reads keys, certificates and TLS |
-| 2 | Map dependencies | Interactive Cytoscape.js graph. Click a key: everything that depends on it turns red, details in a side panel. **Migrate Wave 1 live**: nodes turn green, counters fall (347 → 236) |
+| 2 | Map dependencies | Interactive Cytoscape.js graph. Click a key: everything that depends on it turns red, details in a side panel. **Migrate Wave 1 live**: nodes turn green, counters fall (350 → 241) |
 | 3 | Assess risk | AI risk class Low / Medium / High / Critical for every asset, with plain-language reasons, formula breakdown and neural-network attributions |
 | 4 | Plan waves | Waves 1/2/3 with effort; **what-if slider** for the top N assets |
 | 5 | PQC lab | Choose an asset and a target (ML-KEM, ML-DSA, SLH-DSA, hybrid X25519+ML-KEM-768), run validation checks, migrate, roll back |
 | 6 | Measure and report | Before/after figures, NIST readiness %, changed assets, history, **one-click PDF report** |
 | | Project data | Per project (e.g. the domains you typed): every data row collected, used in the analysis or not, migrated or still to migrate; correct entries; download Excel / CSV / JSON. Open http://localhost:8002/project-data/ ([docs/PROJECT_DATA.md](docs/PROJECT_DATA.md)) |
+| | Config check | Paste or upload TLS configuration (nginx, Apache, HAProxy, Envoy, Istio, Envoy Gateway, Traefik, Caddy, Go, Kubernetes, Terraform). Shows, per endpoint, whether hybrid post-quantum key exchange is on, off because a list pins classical groups, off because of the product default, or dependent on the OpenSSL or Go version, and what to change. Backed by the P8 study of 37 public repositories ([qmigrate/research/p8_config_pqc](qmigrate/research/p8_config_pqc/README.md)) |
 | | AI models | Five models compared: macro-F1 with cross-validation, confusion matrix, feature importance, training curve, retrain |
 | | Alerts | New quantum-vulnerable assets found by scheduled re-discovery; copies by e-mail (SMTP) and Slack webhook |
 | | Audit log | Every login, migration, rollback, setting change and export |
@@ -128,12 +129,11 @@ deploy/               Dockerfile, Caddyfile, backup script           docs/      
 pip install -r requirements-dev.txt
 pytest -q tests                                   # API tests on SQLite
 QM_TEST_PG="postgresql://postgres@localhost/postgres" pytest -q tests   # also on PostgreSQL with RLS
-node tests/e2e/run_e2e.js                         # 23-step browser test (needs Node + Playwright; server on a fresh
+node tests/e2e/run_e2e.js                         # 24-step browser test (needs Node + Playwright; server on a fresh
                                                   # database started with ENABLE_SIMULATOR=1 DATA_SOURCE=simulator)
 ```
 
-Last results: **37 passed, 1 skipped** (API, SQLite + PostgreSQL 16) and **23/23** browser steps, both against the laptop
-setup and against PostgreSQL + Caddy + the separate simulator service.
+Last results (6 November 2026): **128 passed, 3 skipped** (API and research tests, SQLite + PostgreSQL 16 with RLS) and **24/24** browser steps on the laptop setup. The 3 skips need optional packages (moto, pyOpenSSL) or PostgreSQL-only row-level security.
 
 ## 6. Changing the web app
 
