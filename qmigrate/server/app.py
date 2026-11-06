@@ -25,7 +25,7 @@ from qmigrate.server.connectors.clouds import PROVIDERS, make_connector
 from qmigrate.server.db import Database, new_id, now_iso
 from qmigrate.server.security import (hash_password, new_token, otpauth_uri, password_problem, temporary_password,
                                       token_hash, totp_new_secret, totp_verify, verify_password)
-from qmigrate.server.seed import seed_demo
+from qmigrate.server.seed import _specs as seed_specs, seed_demo
 from qmigrate.server.services import PERMISSIONS, ROLES, Invalid, NotFound, Platform
 
 log = logging.getLogger("qmigrate")
@@ -255,13 +255,11 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
 
     @app.get("/api/public/config")
     def public_config():
-        demo = []
-        if s.seed_demo:
-            demo = [{"company": "Demo Finance Co.", "logins": ["admin@demofinance.example", "ciso@demofinance.example",
-                                                                "analyst@demofinance.example", "viewer@demofinance.example"]},
-                    {"company": "Demo Health Group", "logins": ["admin@demohealth.example", "ciso@demohealth.example"]}]
+        show = s.seed_demo and s.show_demo_logins
+        demo = [{"company": t["company"], "logins": [f"{role}@{t['domain']}" for role, _ in t["users"]]}
+                for t in seed_specs(s)] if show else []
         return {"allow_signup": s.allow_signup, "privacy_contact": s.privacy_contact, "demo_accounts": demo,
-                "demo_password": s.demo_password if s.seed_demo else None, "version": VERSION}
+                "demo_password": s.demo_password if show else None, "version": VERSION}
 
     # ============================================================== auth
     @app.post("/api/auth/signup")

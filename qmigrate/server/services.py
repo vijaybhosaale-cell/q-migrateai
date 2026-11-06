@@ -92,7 +92,7 @@ class Platform:
     # ================================================================ tenants
     def create_tenant(self, company: str, email: str, name: str, password: str, *, consent: bool,
                       is_demo: bool = False, profile: str = "generic", seed: int | None = None,
-                      assets: int | None = None) -> tuple[dict, dict]:
+                      assets: int | None = None, source: str | None = None) -> tuple[dict, dict]:
         email = email.strip().lower()
         with self.db.session() as c:
             if self.db.user_by_email(c, email):
@@ -111,7 +111,7 @@ class Platform:
                       (uid, tid, email, name.strip(), hash_password(password), ts if consent else None, ts))
             c.execute("INSERT INTO tenant_settings (tenant_id, alert_email, monitor_interval_hours, updated_at) "
                       "VALUES (?, ?, 24, ?)", (tid, email, ts))
-            if self.settings.data_source == "simulator":
+            if self.settings.data_source == "simulator" or source == "simulator":
                 provider, display = "simulator", "Demo cloud (simulator)"
                 config = {"profile": profile, "seed": seed if seed is not None else (sum(map(ord, slug)) % 900 + 100),
                           "assets": assets or self.settings.demo_assets, "simulate_changes": True}

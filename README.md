@@ -18,6 +18,12 @@ rollback, and measures the result.
 
 ---
 
+## Live demo
+
+Hosted on Render (free, Frankfurt): see [docs/DEPLOY_RENDER.md](docs/DEPLOY_RENDER.md). Sign-up is off and the demo password is given on request; the free service sleeps when idle, so the first visit takes about a minute.
+
+---
+
 ## 1. Run the demo on one Windows laptop (one double-click)
 
 Needs: Windows 10/11, **Python 3.10 or newer** ([python.org](https://www.python.org/downloads/), tick
@@ -134,7 +140,7 @@ node tests/e2e/run_e2e.js                         # 25-step browser test (needs 
                                                   # database started with ENABLE_SIMULATOR=1 DATA_SOURCE=simulator)
 ```
 
-Last results (6 November 2026): **139 passed, 3 skipped** (API and research tests, SQLite + PostgreSQL 16 with RLS) and **25/25** browser steps on the laptop setup. The 3 skips need optional packages (moto, pyOpenSSL) or PostgreSQL-only row-level security.
+Last results (6 November 2026): **142 passed, 3 skipped** (API and research tests, SQLite + PostgreSQL 16 with RLS) and **25/25** browser steps on the laptop setup. The 3 skips need optional packages (moto, pyOpenSSL) or PostgreSQL-only row-level security.
 
 ## 6. Changing the web app
 

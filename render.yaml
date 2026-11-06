@@ -1,0 +1,42 @@
+# Render Blueprint: the live demo of Q-MigrateAI (free web service, Frankfurt, EU).
+# Render dashboard -> New -> Blueprint -> pick this repository. It asks for DEMO_PASSWORD once.
+# Guide: docs/DEPLOY_RENDER.md
+services:
+  - type: web
+    name: q-migrateai
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./deploy/engine.Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEMO_PASSWORD          # typed in the Render dashboard, never stored in Git
+        sync: false
+      - key: DATA_SOURCE            # real data: live TLS measurements of real bank and health websites
+        value: public
+      - key: PUBLIC_SITES
+        value: "45"
+      - key: ENABLE_SIMULATOR       # only for the third company, "Demo Lab (simulated)"
+        value: "1"
+      - key: DEMO_LAB
+        value: "1"
+      - key: DEMO_ASSETS            # size of the simulated Demo Lab (smaller = faster start on a free instance)
+        value: "200"
+      - key: SHOW_DEMO_LOGINS       # do not print the demo password on the public login page
+        value: "0"
+      - key: ALLOW_SIGNUP           # strangers cannot create accounts or scan domains of their choice
+        value: "0"
+      - key: CLOUD_CREDENTIALS      # shared server: never use the server's own cloud login
+        value: role
+      - key: ALLOW_PRIVATE_TARGETS
+        value: "0"
+      - key: MONITOR_ENABLED
+        value: "0"
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: TRUST_PROXY
+        value: "1"

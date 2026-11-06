@@ -26,7 +26,7 @@ export async function loginPage(el: HTMLElement): Promise<void> {
   const demo = cfg?.demo_accounts?.length ? `
     <div class="mt-6 rounded-xl border border-line p-4">
       <p class="text-[13.5px] font-medium">Demo accounts</p>
-      <p class="text-[12.5px] text-fog mb-3">Two fictional companies show that each customer only sees its own data. Password: <span class="id text-mist">${esc(cfg.demo_password ?? "")}</span></p>
+      <p class="text-[12.5px] text-fog mb-3">Fictional companies show that each customer only sees its own data. Password: <span class="id text-mist">${esc(cfg.demo_password ?? "")}</span></p>
       ${cfg.demo_accounts.map((t) => `<p class="text-[12.5px] text-fog mt-2 mb-1">${esc(t.company)}</p>
         <div class="flex flex-wrap gap-1.5">${t.logins.map((l) => `<button type="button" class="chip border-line text-mist hover:border-lattice" data-demo="${esc(l)}">${esc(l.split("@")[0])}</button>`).join("")}</div>`).join("")}
     </div>` : "";

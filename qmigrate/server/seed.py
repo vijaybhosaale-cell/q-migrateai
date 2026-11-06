@@ -26,6 +26,20 @@ DEMO_TENANTS = [
 ]
 
 
+# Optional third workspace on the synthetic simulator (settings.demo_lab), clearly marked as demo data. Real
+# websites only show certificate chains, so this is the workspace where Data paths (P7) has data-flow links.
+DEMO_LAB = {
+    "company": "Demo Lab (simulated)", "profile": "bank", "seed": 42, "domain": "demolab.example", "source": "simulator",
+    "users": [("admin", "Lea Admin"), ("ciso", "Leo CISO"), ("analyst", "Lina Analyst"), ("viewer", "Luc Viewer")],
+}
+
+
+def _specs(s) -> list[dict]:
+    from qmigrate.server.connectors.clouds import PROVIDERS
+    lab = [DEMO_LAB] if s.demo_lab and s.data_source != "simulator" and "simulator" in PROVIDERS else []
+    return DEMO_TENANTS + lab
+
+
 def seed_demo(platform) -> list[str]:
     """Create the demo tenants if the database has no tenants yet. Returns the created tenant ids."""
     db, s = platform.db, platform.settings
@@ -33,11 +47,12 @@ def seed_demo(platform) -> list[str]:
         if c.one("SELECT id FROM tenants"):
             return []
     created = []
-    for spec in DEMO_TENANTS:
+    for spec in _specs(s):
         role, name = spec["users"][0]
+        simulated = s.data_source == "simulator" or spec.get("source") == "simulator"
         tenant, admin = platform.create_tenant(
-            spec["company"], f"{role}@{spec['domain']}", name, s.demo_password, consent=True, is_demo=(s.data_source == "simulator"),
-            profile=spec["profile"], seed=spec["seed"], assets=s.demo_assets)
+            spec["company"], f"{role}@{spec['domain']}", name, s.demo_password, consent=True, is_demo=simulated,
+            profile=spec["profile"], seed=spec["seed"], assets=s.demo_assets, source=spec.get("source"))
         tid = tenant["id"]
         with db.session(tid) as c:
             for role, name in spec["users"][1:]:

@@ -59,6 +59,12 @@ class Settings:
         self.session_hours = int(os.environ.get("SESSION_HOURS", "12"))
         self.allow_signup = _flag("ALLOW_SIGNUP", "1")
         self.seed_demo = _flag("SEED_DEMO", "1")
+        # A third demo company on the synthetic simulator ("Demo Lab"), for the pages that need data-flow links
+        # (Data paths) next to the real-data companies. Needs ENABLE_SIMULATOR=1.
+        self.demo_lab = _flag("DEMO_LAB", "0")
+        # Show the demo logins and their password on the login page (laptop demo). Turn off on a public server:
+        # the demo accounts still exist, but only people you give the password to can use them.
+        self.show_demo_logins = _flag("SHOW_DEMO_LOGINS", "1")
         self.demo_password = os.environ.get("DEMO_PASSWORD", "QuantumDemo!2026")
         self.demo_assets = int(os.environ.get("DEMO_ASSETS", "400"))
         self.public_sites = int(os.environ.get("PUBLIC_SITES", "45"))   # websites per company for real data
@@ -70,7 +76,9 @@ class Settings:
         self.smtp_password = os.environ.get("SMTP_PASSWORD", "")
         self.smtp_from = os.environ.get("SMTP_FROM", "alerts@qmigrate.local")
         self.smtp_starttls = _flag("SMTP_STARTTLS", "1")
-        self.public_url = os.environ.get("PUBLIC_URL", "http://localhost:8002").rstrip("/")
+        # Render sets RENDER_EXTERNAL_URL to the service's public address.
+        self.public_url = (os.environ.get("PUBLIC_URL") or os.environ.get("RENDER_EXTERNAL_URL")
+                           or "http://localhost:8002").rstrip("/")
         self.web_dir = Path(os.environ.get("WEB_DIR", ROOT / "web" / "dist"))
         self.serve_web = _flag("SERVE_WEB", "1")
         self.privacy_contact = os.environ.get("PRIVACY_CONTACT", "privacy@awhlle.com")
