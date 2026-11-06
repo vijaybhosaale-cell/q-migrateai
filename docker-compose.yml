@@ -1,0 +1,95 @@
+# Q-MigrateAI production stack: Caddy (HTTPS) -> engine (FastAPI) -> PostgreSQL, plus the simulator and daily backups.
+# Start:  cp .env.example .env   (then edit it)   and   docker compose up -d --build
+name: qmigrate
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: qmigrate
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d qmigrate"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    # Not published to the internet: only the engine and the backup job can reach it.
+
+  simulator:
+    build: { context: ., dockerfile: deploy/engine.Dockerfile }
+    image: qmigrate-engine:latest
+    restart: unless-stopped
+    command: ["uvicorn", "qmigrate.simulator.app:app", "--host", "0.0.0.0", "--port", "8001"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health', timeout=4)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  engine:
+    image: qmigrate-engine:latest
+    build: { context: ., dockerfile: deploy/engine.Dockerfile }
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+      simulator: { condition: service_started }
+    environment:
+      DATABASE_URL: postgresql://qmigrate_app:${APP_DB_PASSWORD:?set APP_DB_PASSWORD in .env}@postgres:5432/qmigrate
+      DATABASE_ADMIN_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/qmigrate
+      SIMULATOR_URL: http://simulator:8001
+      SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env}
+      COOKIE_SECURE: ${COOKIE_SECURE:-1}
+      TRUST_PROXY: "1"
+      SERVE_WEB: "0"
+      PUBLIC_URL: ${PUBLIC_URL:-https://qmigrate.awhlle.com}
+      ALLOW_SIGNUP: ${ALLOW_SIGNUP:-1}
+      SEED_DEMO: ${SEED_DEMO:-1}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:?set DEMO_PASSWORD in .env}
+      MONITOR_ENABLED: ${MONITOR_ENABLED:-1}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_FROM: ${SMTP_FROM:-alerts@awhlle.com}
+      PRIVACY_CONTACT: ${PRIVACY_CONTACT:-privacy@awhlle.com}
+    volumes:
+      - enginedata:/app/data
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on: [engine]
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+      - "${LOCAL_PORT:-8080}:8080"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-qmigrate.awhlle.com}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./web/dist:/srv/web:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+  backup:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-14}
+    volumes:
+      - ./backups:/backups
+      - ./deploy/backup.sh:/backup.sh:ro
+    entrypoint: ["/bin/sh", "/backup.sh"]
+
+volumes:
+  pgdata:
+  enginedata:
+  caddy_data:
+  caddy_config:

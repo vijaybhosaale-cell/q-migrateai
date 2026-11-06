@@ -1,0 +1,22 @@
+flowchart TB
+  user(["Security team, in the browser"])
+  subgraph server["One EU server (Hetzner, Docker Compose)  ·  or one laptop for the demo"]
+    direction TB
+    caddy["Caddy<br/>automatic HTTPS, security headers"]
+    web["Web app (static files)<br/>TypeScript + Tailwind + Cytoscape.js"]
+    engine["AI engine API (FastAPI)<br/>login, 2FA, roles, tenants · risk models<br/>plan, PQC lab, rollback · PDF report<br/>alerts, scheduled monitoring, GDPR export/delete"]
+    sim["Cloud simulator (FastAPI)<br/>synthetic AWS / Azure / GCP estates"]
+    db[("PostgreSQL 16<br/>tenant_id on every row<br/>row-level security")]
+    backup["Daily backup<br/>pg_dump, kept 14 days"]
+  end
+  notify["E-mail (SMTP) and Slack webhook"]
+  clouds["Real AWS / Azure / GCP<br/>read-only roles: SecurityAudit, Reader, Viewer<br/>(adapter designed, scanning not built yet)"]
+
+  user -- "HTTPS" --> caddy
+  caddy -- "/" --> web
+  caddy -- "/api/*" --> engine
+  engine -- "discover()" --> sim
+  engine -- "SQL as non-superuser role" --> db
+  backup --> db
+  engine --> notify
+  engine -. "future connector" .-> clouds

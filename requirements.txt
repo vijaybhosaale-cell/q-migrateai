@@ -1,0 +1,13 @@
+# Q-MigrateAI platform: everything needed for the laptop demo (SQLite).
+fastapi>=0.115
+uvicorn>=0.30
+numpy>=1.26
+scikit-learn>=1.4
+networkx>=3.2
+requests>=2.31
+reportlab>=4.0
+cryptography>=42
+boto3>=1.34            # AWS connector (read-only)
+azure-identity>=1.15   # Azure connector (uses the az login on this PC)
+google-auth>=2.29      # Google Cloud connector (uses the gcloud login on this PC)
+openpyxl>=3.1          # Excel download on the project data page

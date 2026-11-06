@@ -1,0 +1,70 @@
+@font-face { font-family: "Space Grotesk"; src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("/fonts/IBMPlexSans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("/fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("/fonts/IBMPlexMono-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; }
+  body { @apply bg-ink-0 text-mist font-sans antialiased; font-size: 14.5px; line-height: 1.5; }
+  h1, h2, h3 { @apply font-display text-mist; letter-spacing: -0.01em; }
+  h1 { @apply text-[26px] font-semibold leading-tight; }
+  h2 { @apply text-[17px] font-semibold leading-snug; }
+  h3 { @apply text-[15px] font-medium; }
+  a { @apply text-lattice hover:underline; }
+  :focus-visible { outline: 2px solid #9B8CFF; outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: #3b3380; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@layer components {
+  /* the lattice: a faint dot grid used behind the dashboard hero and auth pages */
+  .lattice-bg {
+    background-image: radial-gradient(rgba(155, 140, 255, 0.16) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  .panel { @apply bg-ink-1 border border-line rounded-[10px]; }
+  .panel-pad { @apply p-5; }
+  .panel-hero { @apply bg-ink-1 border border-line rounded-[16px]; }
+  .muted { @apply text-fog; }
+  .label { @apply block text-[13px] font-medium text-fog mb-1.5; }
+  .input {
+    @apply w-full bg-ink-0 border border-line rounded-lg px-3 py-2 text-mist placeholder:text-fog/60
+           focus:outline-none focus:border-lattice focus:ring-1 focus:ring-lattice;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-[14px] font-medium
+           border border-line bg-ink-2 text-mist hover:bg-ink-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary { @apply bg-lattice text-ink-0 border-lattice hover:bg-lattice-strong hover:border-lattice-strong; }
+  .btn-danger { @apply bg-transparent text-risk-critical border-risk-critical/50 hover:bg-risk-critical/10; }
+  .btn-quiet { @apply bg-transparent border-transparent text-fog hover:text-mist hover:bg-ink-2; }
+  .btn-sm { @apply px-2.5 py-1.5 text-[13px]; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[12.5px] font-medium border; }
+  .id { @apply font-mono text-[13px]; }
+  .tbl { @apply w-full text-left text-[13.5px]; }
+  .tbl th { @apply font-medium text-fog px-3 py-2 border-b border-line whitespace-nowrap; }
+  .tbl td { @apply px-3 py-2 border-b border-line/60 align-top; }
+  .tbl td.id { @apply whitespace-nowrap; }
+  .tbl tbody tr:hover { @apply bg-ink-2/60; }
+  .nav-link { @apply flex items-center gap-3 rounded-lg px-3 py-2 text-[14px] text-fog hover:text-mist hover:bg-ink-2 no-underline hover:no-underline; }
+  .nav-link.active { @apply bg-lattice-soft text-mist; }
+  .nav-step { @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-line font-display text-[11px] text-fog; }
+  .nav-link.active .nav-step { @apply border-lattice text-lattice; }
+  .kpi-value { @apply font-display text-[34px] font-semibold leading-none tabular; }
+  .bar-track { @apply h-2 rounded-full bg-ink-3 overflow-hidden; }
+  .skeleton { @apply animate-pulse bg-ink-2 rounded-lg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@layer components {
+  .policy ul { @apply list-disc space-y-1.5 pl-5; }
+}

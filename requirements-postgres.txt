@@ -1,0 +1,3 @@
+# Extra package for PostgreSQL (used by the Docker / server deployment).
+-r requirements.txt
+psycopg[binary]>=3.1

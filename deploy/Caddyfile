@@ -1,0 +1,30 @@
+# Caddy: automatic HTTPS (Let's Encrypt) for the site address, static web app, and /api/* to the engine.
+# SITE_ADDRESS comes from .env, e.g. qmigrate.awhlle.com (real certificate) or :8080 (plain HTTP on a laptop).
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "same-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+		-Server
+	}
+
+	handle /api/* {
+		reverse_proxy engine:8002
+	}
+
+	handle {
+		root * /srv/web
+		try_files {path} /index.html
+		file_server
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

@@ -1,0 +1,6 @@
+# For running the automated tests.
+-r requirements-postgres.txt
+pytest>=8
+httpx>=0.27
+pyopenssl>=24  # optional: lets tests/test_realdata.py run a post-quantum TLS server
+moto[kms,acm,elbv2,rds,s3,cloudfront,ec2,sts]>=5.0  # mocked AWS for tests/test_cloud_connectors.py
