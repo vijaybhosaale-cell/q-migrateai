@@ -174,6 +174,12 @@ def create_app(settings: Settings | None = None, *, seed_in_background: bool = T
             "connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'")
         if request.url.path.startswith("/api/"):
             response.headers.setdefault("Cache-Control", "no-store")
+        elif request.url.path == "/" or request.url.path.endswith((".html", ".js", ".css")):
+            # Revalidate the application itself on every visit. Without this the browser
+            # caches the scripts heuristically, so after a deployment it keeps running the
+            # old ones, which looks like the new code never shipped. "no-cache" still allows
+            # a 304, so an unchanged file costs one small request.
+            response.headers.setdefault("Cache-Control", "no-cache")
         return response
 
     @app.exception_handler(NotFound)
