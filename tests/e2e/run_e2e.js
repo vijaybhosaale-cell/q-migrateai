@@ -126,9 +126,8 @@ async function waitHealthySeed() {
     await page.waitForSelector("[data-error]:not(.hidden)");
   });
 
-  await step("Demo chip logs in the CISO and the dashboard shows the estate", async () => {
-    await page.click('[data-demo="ciso@demofinance.example"]');
-    await page.click("form button[type=submit]");
+  await step("Demo chip logs in the CISO in one click and the dashboard shows the estate", async () => {
+    await page.click('[data-demo="ciso@demofinance.example"]');   // one click: fills the form and submits it
     await page.waitForFunction(() => location.hash.startsWith("#/dashboard"));
     await page.waitForSelector(".kpi-value");
     const t = await text("#page");
